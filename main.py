@@ -1,38 +1,34 @@
 import pygame
-from math import *
-from Clock import Clock
+from GameClock import GameClock
+from SmartScreen import SmartScreen
+from Sprites.TimeSprite import TimeSprite
+from const import screen_width, screen_height, screen_center, fps
 
 if __name__ == '__main__':
     pygame.init()
-    pygame.display.set_caption('Перетаскивание')
-    size = width, height = 201, 201
-    center = width // 2
-    screen = pygame.display.set_mode(size)
-    screen.fill(pygame.Color('black'))
-    running = True
-    FPS = 1
+    pygame.display.set_caption('Диспетчер')
+
+    size = width, height = screen_width, screen_height
 
     clock = pygame.time.Clock()
-    cl = Clock(75, 50)
+    game_clock = GameClock()
+    clock_sprite = TimeSprite(*screen_center)
 
+    smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
+    smart_screen.add_sprite(clock_sprite)
 
-
-
+    running = True
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
+        game_clock.tick()
+        clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
 
-        screen.fill((0, 0, 0))
-
-        pygame.draw.line(screen, (255, 255, 255), (center, center), cl.get_minut_coord(center, center), 1)
-        pygame.draw.line(screen, (255, 255, 255), (center, center), cl.get_hour_coord(center, center), 1)
-        cl._update()
-
-
-        clock.tick(FPS)
+        clock.tick(fps)
+        smart_screen.refresh()
         pygame.display.flip()
 
     pygame.quit()
