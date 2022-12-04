@@ -14,7 +14,7 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     game_clock = GameClock()
 
-    clock_sprite = TimeSprite(screen_width - 78, 95)
+    clock_sprite = TimeSprite(screen_width - 87, 95)
     background_sprite = UIBackgroundSprite()
 
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
