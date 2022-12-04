@@ -14,8 +14,12 @@ if __name__ == '__main__':
     game_clock = GameClock()
     clock_sprite = TimeSprite(*screen_center)
 
+    game_clock1 = GameClock(requiredTime=2)
+    clock_sprite1 = TimeSprite(screen_center[0] + 100, screen_center[1])
+
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
     smart_screen.add_sprite(clock_sprite)
+    smart_screen.add_sprite(clock_sprite1)
 
     running = True
 
@@ -25,7 +29,9 @@ if __name__ == '__main__':
                 running = False
 
         game_clock.tick()
+        game_clock1.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
+        clock_sprite1.change_time_pos(game_clock1.hour, game_clock1.minute)
 
         clock.tick(fps)
         smart_screen.refresh()
