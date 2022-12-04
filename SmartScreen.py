@@ -1,14 +1,13 @@
 import pygame
 
 from Sprites.Sprite import Sprite
-from Scene.Scene import Scene
+
 
 class SmartScreen:
     def __init__(self, screen: pygame.Surface, background_color: pygame.Color):
         self.screen = screen
         self.background_color = background_color
         self._sprites = []
-        self.sc = Scene(screen)
 
     def add_sprite(self, sprite: Sprite):
         self._sprites.append(sprite)
@@ -21,6 +20,5 @@ class SmartScreen:
 
     def refresh(self):
         self.screen.fill(self.background_color)
-        self.sc.ref()
         for sprite in self._sprites:
             sprite.draw(self.screen)

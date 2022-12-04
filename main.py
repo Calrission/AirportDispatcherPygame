@@ -1,8 +1,9 @@
 import pygame
 from GameClock import GameClock
+from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
-from const import screen_width, screen_height, screen_center, fps
+from const import screen_width, screen_height, fps
 
 if __name__ == '__main__':
     pygame.init()
@@ -12,9 +13,12 @@ if __name__ == '__main__':
 
     clock = pygame.time.Clock()
     game_clock = GameClock()
+
     clock_sprite = TimeSprite(screen_width - 78, 95)
+    background_sprite = UIBackgroundSprite()
 
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
+    smart_screen.add_sprite(background_sprite)
     smart_screen.add_sprite(clock_sprite)
 
     running = True
@@ -26,7 +30,6 @@ if __name__ == '__main__':
 
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
-
 
         clock.tick(fps)
         smart_screen.refresh()
