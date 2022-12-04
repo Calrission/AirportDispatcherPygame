@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     clock = pygame.time.Clock()
     game_clock = GameClock()
-    clock_sprite = TimeSprite(screen_width - 80, 110)
+    clock_sprite = TimeSprite(screen_width - 78, 95)
 
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
     smart_screen.add_sprite(clock_sprite)
