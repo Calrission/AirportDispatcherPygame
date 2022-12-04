@@ -11,7 +11,7 @@ if __name__ == '__main__':
     size = width, height = screen_width, screen_height
 
     clock = pygame.time.Clock()
-    game_clock = GameClock()
+    game_clock = GameClock(requiredTime)
     clock_sprite = TimeSprite(screen_width - 78, 95)
 
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
