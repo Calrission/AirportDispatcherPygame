@@ -1,4 +1,4 @@
-screen_width = 1080
+screen_width = 1280
 screen_height = 720
 screen_center = (screen_width // 2, screen_height // 2)
 
