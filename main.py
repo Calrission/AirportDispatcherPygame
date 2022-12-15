@@ -1,6 +1,7 @@
 import pygame
 from GameClock import GameClock
 from Sprites.UIBackgroundSprite import UIBackgroundSprite
+from Sprites.UIFrameSprite import  UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
 from const import screen_width, screen_height, fps
@@ -9,6 +10,7 @@ if __name__ == '__main__':
     pygame.init()
     pygame.display.set_caption('Диспетчер')
 
+
     size = width, height = screen_width, screen_height
 
     clock = pygame.time.Clock()
@@ -16,10 +18,16 @@ if __name__ == '__main__':
 
     clock_sprite = TimeSprite(screen_width - 105, 95)
     background_sprite = UIBackgroundSprite()
+    frame_sprite = UIFrameSprite()
 
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
     smart_screen.add_sprite(background_sprite)
     smart_screen.add_sprite(clock_sprite)
+
+
+
+
+    smart_screen.add_sprite(frame_sprite)
 
     running = True
 

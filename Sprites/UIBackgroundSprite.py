@@ -10,13 +10,19 @@ class UIBackgroundSprite(Sprite):
         self.scene = None
         self.image = None
 
+
     def draw(self, screen: Surface):
         if self.scene is None:
             self._init_scene(screen)
         screen.blit(self.scene, (0, 0))
 
     def _init_scene(self, screen: Surface):
-        self.scene = pygame.Surface(screen.get_size())
-        self.image = pygame.image.load('Scene/scene.png')
+        self.scene = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+        self.image = self._init_image()
         self.image = pygame.transform.scale(self.image, (screen.get_size()))
         self.scene.blit(self.image, (0, 0))
+
+    def _init_image(self) -> pygame.image:
+        image = pygame.image.load('Scene/scene.png')
+        return image
+
