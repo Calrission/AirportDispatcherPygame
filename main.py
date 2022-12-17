@@ -25,11 +25,12 @@ if __name__ == '__main__':
     smart_screen.add_sprite(background_sprite)
     smart_screen.add_sprite(clock_sprite)
 
-    plane = Plane(10, 10, ['Sprites/Airplane/Airplane_0000_AirPlane_landed.png',
+    plane = Plane(0, 0, ['Sprites/Airplane/Airplane_0002_AirPlane_goIn.png',
                            'Sprites/Airplane/Airplane_0001_AirPlane_landing.png',
-                           'Sprites/Airplane/Airplane_0002_AirPlane_goIn.png'])
+                           'Sprites/Airplane/Airplane_0000_AirPlane_landed.png'], size=(10, 10))
 
     smart_screen.add_sprite(plane)
+    plane.landing('A')
 
 
 

@@ -22,3 +22,4 @@ class SmartScreen:
         self.screen.fill(self.background_color)
         for sprite in self._sprites:
             sprite.draw(self.screen)
+            sprite.update()
