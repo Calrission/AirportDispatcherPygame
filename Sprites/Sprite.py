@@ -1,7 +1,7 @@
 from pygame import Surface
 
 
-class Sprite:
+class Sprite():
     def __init__(self, x: int, y: int):
         self.x = x
         self.y = y

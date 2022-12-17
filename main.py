@@ -5,6 +5,7 @@ from Sprites.UIFrameSprite import  UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
 from const import screen_width, screen_height, fps
+from Sprites.Plane import Plane
 
 if __name__ == '__main__':
     pygame.init()
@@ -24,6 +25,11 @@ if __name__ == '__main__':
     smart_screen.add_sprite(background_sprite)
     smart_screen.add_sprite(clock_sprite)
 
+    plane = Plane(10, 10, ['Sprites/Airplane/Airplane_0000_AirPlane_landed.png',
+                           'Sprites/Airplane/Airplane_0001_AirPlane_landing.png',
+                           'Sprites/Airplane/Airplane_0002_AirPlane_goIn.png'])
+
+    smart_screen.add_sprite(plane)
 
 
 
