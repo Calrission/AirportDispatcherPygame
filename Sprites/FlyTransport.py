@@ -113,7 +113,7 @@ class FlyTransport(Transport):
         #     self.x -= 0.2
         #     self.y += 2
 
-        if frame >= fps * 100:
+        if frame > fps * 12:
             self.A = False
             self.frame = 0
 
