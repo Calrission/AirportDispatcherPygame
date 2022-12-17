@@ -9,8 +9,11 @@ class MultiSprite(Sprite):
         super().__init__(x, y)
         self.sprites = []
         for i in images:
-            self.sprites.append(pygame.image.load(i))
-        self.current_img = self.sprites[0]
+            a = []
+            for j in i:
+                a.append(pygame.image.load(j))
+            self.sprites.append(a)
+        self.current_img = self.sprites[0][0]
 
         if size == (0, 0):
             self.size = self.current_img.get_size()

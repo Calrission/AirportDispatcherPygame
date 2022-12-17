@@ -23,18 +23,44 @@ if __name__ == '__main__':
 
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
     smart_screen.add_sprite(background_sprite)
-    smart_screen.add_sprite(clock_sprite)
 
-    plane = Plane(0, 0, ['Sprites/Airplane/Airplane_0002_AirPlane_goIn.png',
-                           'Sprites/Airplane/Airplane_0001_AirPlane_landing.png',
-                           'Sprites/Airplane/Airplane_0000_AirPlane_landed.png'], size=(10, 10))
+
+    plane = Plane(0, 0, [['Sprites/Airplane/LeftStrip/TakesOff.png',
+                          'Sprites/Airplane/LeftStrip/TakeOff.png',
+                          'Sprites/Airplane/LeftStrip/GoAway.png',
+                          'Sprites/Airplane/LeftStrip/GoIn.png',
+                          'Sprites/Airplane/LeftStrip/Landing.png',
+                          'Sprites/Airplane/LeftStrip/Landed.png'],
+                         ['Sprites/Airplane/RightStrip/TakesOff.png',
+                          'Sprites/Airplane/RightStrip/TakeOff.png',
+                          'Sprites/Airplane/RightStrip/TakesOff.png',
+                          'Sprites/Airplane/RightStrip/GoIn.png',
+                          'Sprites/Airplane/RightStrip/Landing.png',
+                          'Sprites/Airplane/RightStrip/Landed.png']])
 
     smart_screen.add_sprite(plane)
     plane.landing('A')
 
+    plane = Plane(0, 0, [['Sprites/Airplane/LeftStrip/TakesOff.png',
+                          'Sprites/Airplane/LeftStrip/TakeOff.png',
+                          'Sprites/Airplane/LeftStrip/GoAway.png',
+                          'Sprites/Airplane/LeftStrip/GoIn.png',
+                          'Sprites/Airplane/LeftStrip/Landing.png',
+                          'Sprites/Airplane/LeftStrip/Landed.png'],
+                         ['Sprites/Airplane/RightStrip/TakesOff.png',
+                          'Sprites/Airplane/RightStrip/TakeOff.png',
+                          'Sprites/Airplane/RightStrip/TakesOff.png',
+                          'Sprites/Airplane/RightStrip/GoIn.png',
+                          'Sprites/Airplane/RightStrip/Landing.png',
+                          'Sprites/Airplane/RightStrip/Landed.png']])
+
+    smart_screen.add_sprite(plane)
+    plane.landing('B')
+
 
 
     smart_screen.add_sprite(frame_sprite)
+    smart_screen.add_sprite(clock_sprite)
 
     running = True
 
