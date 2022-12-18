@@ -33,13 +33,13 @@ if __name__ == '__main__':
                           'Sprites/Airplane/LeftStrip/Landed.png'],
                          ['Sprites/Airplane/RightStrip/TakesOff.png',
                           'Sprites/Airplane/RightStrip/TakeOff.png',
-                          'Sprites/Airplane/RightStrip/TakesOff.png',
+                          'Sprites/Airplane/LeftStrip/TakesOff.png',
                           'Sprites/Airplane/RightStrip/GoIn.png',
                           'Sprites/Airplane/RightStrip/Landing.png',
                           'Sprites/Airplane/RightStrip/Landed.png']])
 
     smart_screen.add_sprite(plane)
-    plane.landing('A')
+    plane.takeOff('B')
 
     plane = Plane(0, 0, [['Sprites/Airplane/LeftStrip/TakesOff.png',
                           'Sprites/Airplane/LeftStrip/TakeOff.png',
@@ -49,17 +49,17 @@ if __name__ == '__main__':
                           'Sprites/Airplane/LeftStrip/Landed.png'],
                          ['Sprites/Airplane/RightStrip/TakesOff.png',
                           'Sprites/Airplane/RightStrip/TakeOff.png',
-                          'Sprites/Airplane/RightStrip/TakesOff.png',
+                          'Sprites/Airplane/LeftStrip/TakesOff.png',
                           'Sprites/Airplane/RightStrip/GoIn.png',
                           'Sprites/Airplane/RightStrip/Landing.png',
                           'Sprites/Airplane/RightStrip/Landed.png']])
 
     smart_screen.add_sprite(plane)
-    plane.landing('B')
+    plane.takeOff('A')
 
 
 
-    smart_screen.add_sprite(frame_sprite)
+    # smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
 
     running = True
