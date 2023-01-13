@@ -9,8 +9,6 @@ class FlyTransport(Transport):
         self.landTime = landTime
         self.takeOffTime = takeOffTime
         self.animation: MultiSpriteAnimation = None
-        self.frame = 0
-        self.lA = self.lB = self.tA = self.tB = False
         self.velocity = [0, 0]
 
     def landing(self, strip: chr):
