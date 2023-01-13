@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     plane = Plane.get_instance(0, 0)
     smart_screen.add_sprite(plane)
-    plane.takeOff('A')
+    plane.takeOff('B')
 
     plane = Plane.get_instance(0, 0)
     smart_screen.add_sprite(plane)
