@@ -2,8 +2,10 @@ import pygame.transform
 from Sprites.Transport import Transport
 from const import fps
 
+
 class FlyTransport(Transport):
-    def __init__(self, x: int, y: int, images: list, size=[0, 0], fuel=100,  rateFuel=50, mass=10, landTime=10, takeOffTime=10):
+    def __init__(self, x: int, y: int, images: list, size=[0, 0], fuel=100, rateFuel=50, mass=10, landTime=10,
+                 takeOffTime=10):
         super().__init__(x, y, images, size, fuel, rateFuel, mass)
         self.landTime = landTime
         self.takeOffTime = takeOffTime
@@ -27,7 +29,6 @@ class FlyTransport(Transport):
             self._animation_landB(self.frame)
             self.frame += 1
 
-
     def takeOff(self):
         pass
 
@@ -45,7 +46,6 @@ class FlyTransport(Transport):
             self.velocity[0] = 0.5
         elif frame == fps * 9:
             self.velocity[0] = 0.1
-
 
         if frame <= fps * 2:
             self.x += self.velocity[0]
@@ -78,13 +78,9 @@ class FlyTransport(Transport):
             self.x -= self.velocity[0]
             self.y += self.velocity[1]
 
-
         if frame > fps * 12:
             self.B = False
             self.frame = 0
-
-
-
 
     def _animation_landA(self, frame):
         if frame == 0:
@@ -117,7 +113,7 @@ class FlyTransport(Transport):
             self.size[1] += 14 / 30
             self.x += self.velocity[0]
             self.y += self.velocity[1]
-            self.velocity[0] += self.velocity[0] *  0.001
+            self.velocity[0] += self.velocity[0] * 0.001
             self.velocity[1] -= self.velocity[1] * 0.005
         elif fps * 8 < frame <= fps * 12:
             self.current_img = pygame.transform.scale(self.sprites[0][5], self.size)
