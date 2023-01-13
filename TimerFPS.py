@@ -5,7 +5,6 @@ class Timer:
         self.requiredFrame = fps * time
         self.frame = 0
 
-
     def timer_tick(self) -> bool:
         self.frame += 1
         if self.requiredFrame == self.frame:

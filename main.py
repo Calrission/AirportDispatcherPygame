@@ -1,4 +1,6 @@
 import pygame
+
+from AircraftController import AircraftController
 from GameClock import GameClock
 from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
@@ -23,13 +25,12 @@ if __name__ == '__main__':
     smart_screen = SmartScreen(pygame.display.set_mode(size), pygame.Color("black"))
     smart_screen.add_sprite(background_sprite)
 
-    plane = Plane.get_instance(0, 0)
-    smart_screen.add_sprite(plane)
-    plane.takeOff('B')
+    controller = AircraftController()
+    plane1 = controller.add_new_plane(smart_screen)
+    plane2 = controller.add_new_plane(smart_screen)
 
-    plane = Plane.get_instance(0, 0)
-    smart_screen.add_sprite(plane)
-    plane.landing('B')
+    plane1.takeOff('A')
+    plane2.landing('B')
 
     smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
