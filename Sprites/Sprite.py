@@ -7,7 +7,6 @@ class Sprite():
         self.y = y
         self.coord = (x, y)
 
-
     def move(self, x: int, y: int):
         self.x, self.y = x, y
         self.coord = (x, y)
