@@ -1,4 +1,6 @@
 from TimerFPS import Timer
+
+
 class GameClock(Timer):
     def __init__(self, hour: int = 0, minute: int = 0, fps: int = 30, requiredTime: float = 1):
         super().__init__(fps=fps, time=requiredTime)

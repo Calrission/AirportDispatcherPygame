@@ -1,12 +1,4 @@
-import pygame
-
-from Animation.PlaneAnimation import PlaneAnimation
-from Animation.PlaneAnimationLandA import PlaneAnimationLandA
-from Animation.PlaneAnimationLandB import PlaneAnimationLandB
-from Animation.PlaneAnimationTakeOffA import PlaneAnimationTakeOffA
-from Animation.PlaneAnimationTakeOffB import PlaneAnimationTakeOffB
 from Sprites.FlyTransport import FlyTransport
-from const import screen_height, fps
 
 
 class Plane(FlyTransport):
@@ -29,14 +21,3 @@ class Plane(FlyTransport):
                  takeOffTime=10):
         super().__init__(x, y, images, size, fuel, rateFuel, mass, landTime, takeOffTime)
 
-    def landing(self, strip: chr):
-        if strip == 'A':
-            self.animation = PlaneAnimationLandA(self)
-        elif strip == 'B':
-            self.animation = PlaneAnimationLandB(self)
-
-    def takeOff(self, strip: chr):
-        if strip == 'A':
-            self.animation = PlaneAnimationTakeOffA(self)
-        elif strip == 'B':
-            self.animation = PlaneAnimationTakeOffB(self)

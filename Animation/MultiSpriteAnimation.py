@@ -1,5 +1,4 @@
 from Sprites.MultiSprite import MultiSprite
-from const import fps
 
 
 class MultiSpriteAnimation:

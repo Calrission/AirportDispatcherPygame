@@ -30,10 +30,10 @@ if __name__ == '__main__':
     plane3 = controller.add_new_plane(smart_screen)
     plane4 = controller.add_new_plane(smart_screen)
 
-    plane1.landing('A')
-    plane2.landing('B')
-    plane3.takeOff('A')
-    plane4.takeOff('B')
+    controller.landing(plane1, 'A')
+    controller.landing(plane2, 'B')
+    controller.take_off(plane3, 'A')
+    controller.take_off(plane4, 'B')
 
     smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
