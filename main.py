@@ -6,10 +6,13 @@ from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
+from TextView import TextView
 from const import screen_width, screen_height, fps
 
 if __name__ == '__main__':
     pygame.init()
+    pygame.font.init()
+
     pygame.display.set_caption('Диспетчер')
 
     size = width, height = screen_width, screen_height
@@ -38,6 +41,9 @@ if __name__ == '__main__':
     smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
 
+    textView = TextView(24, 510)
+    textView.text = "Test"
+
     running = True
 
     while running:
@@ -50,6 +56,7 @@ if __name__ == '__main__':
 
         clock.tick(fps)
         smart_screen.refresh()
+        textView.refresh(smart_screen.screen)
         pygame.display.flip()
 
     pygame.quit()
