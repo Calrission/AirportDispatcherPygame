@@ -6,7 +6,8 @@ from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
-from TextView import TextView
+from TerminalView import TerminalView
+from MultiLineText import MultiLineText
 from const import screen_width, screen_height, fps
 
 if __name__ == '__main__':
@@ -41,8 +42,7 @@ if __name__ == '__main__':
     smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
 
-    textView = TextView(24, 510)
-    textView.text = "Test"
+    terminal = TerminalView(24, 510)
 
     running = True
 
@@ -50,13 +50,14 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            terminal.event(event)
 
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
 
         clock.tick(fps)
         smart_screen.refresh()
-        textView.refresh(smart_screen.screen)
+        terminal.refresh(smart_screen.screen)
         pygame.display.flip()
 
     pygame.quit()
