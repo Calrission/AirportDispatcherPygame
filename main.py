@@ -7,7 +7,6 @@ from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
 from TerminalView import TerminalView
-from MultiLineText import MultiLineText
 from const import screen_width, screen_height, fps
 
 if __name__ == '__main__':
@@ -34,15 +33,15 @@ if __name__ == '__main__':
     plane3 = controller.add_new_plane(smart_screen)
     plane4 = controller.add_new_plane(smart_screen)
 
+    smart_screen.add_sprite(frame_sprite)
+    smart_screen.add_sprite(clock_sprite)
+
     controller.landing(plane1, 'A')
     controller.landing(plane2, 'B')
     controller.take_off(plane3, 'A')
     controller.take_off(plane4, 'B')
 
-    smart_screen.add_sprite(frame_sprite)
-    smart_screen.add_sprite(clock_sprite)
-
-    terminal = TerminalView(24, 510)
+    terminal = TerminalView(24, 510, 650, 213)
 
     running = True
 
@@ -50,7 +49,7 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            terminal.event(event)
+            terminal.parse_event(event)
 
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)

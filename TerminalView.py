@@ -5,8 +5,8 @@ from MultiLineText import MultiLineText
 
 
 class TerminalView:
-    def __init__(self, x, y):
-        self.__text_view = MultiLineText(x, y, color="green", size=16)
+    def __init__(self, x, y, w, h):
+        self.__text_view = MultiLineText(x, y, w, h, color="green", size=16)
         self.active_input = True
 
     def add_command(self, command: str):
@@ -20,9 +20,9 @@ class TerminalView:
 
     def tick(self):
         for event in pygame.event.get():
-            self.event(event)
+            self.parse_event(event)
 
-    def event(self, event):
+    def parse_event(self, event):
         if event.type == pygame.KEYDOWN and self.active_input:
             if event.key == pygame.K_RETURN:
                 self.__text_view.add_text("")
