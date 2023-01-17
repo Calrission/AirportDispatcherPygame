@@ -40,13 +40,17 @@ if __name__ == '__main__':
     smart_screen.add_sprite(clock_sprite)
 
     scenario = Scenario()
-    scenario.add_Land('A', 10 * fps)
-    scenario.add_Land('B', 20 * fps)
-    scenario.add_Land('A', 15 * fps)
+    # scenario.add_Land('A', 10 * fps)
+    # scenario.add_Land('B', 20 * fps)
+    # scenario.add_Land('A', 15 * fps)
+    #
+    # scenario.add_takeOff('B', 9 * fps)
+    # scenario.add_takeOff('A', 14 * fps)
+    # scenario.add_takeOff('A', 16 * fps)
 
-    scenario.add_takeOff('B', 9 * fps)
-    scenario.add_takeOff('A', 14 * fps)
-    scenario.add_takeOff('A', 16 * fps)
+    # scenario.save('test.scen')
+
+    scenario.load('test.scen')
 
     running = True
 

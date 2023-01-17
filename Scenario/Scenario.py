@@ -1,4 +1,5 @@
 from AircraftController import AircraftController
+import pickle
 
 class Scenario():
     def __init__(self):
@@ -25,6 +26,15 @@ class Scenario():
 
     def add_weather(self):
         pass
+
+    def load(self, file):
+        with open(file, 'rb') as f:
+            self.scenario = pickle.load(f)
+
+    def save(self, file):
+        with open(file, 'wb') as f:
+            pickle.dump(self.scenario, f)
+
 
 
 
