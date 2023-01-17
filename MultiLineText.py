@@ -12,7 +12,11 @@ class MultiLineText:
         self.max_lines = max_lines
 
     def change_text(self, text: str):
-        self.text_lines = [text]
+        if "\n" in text:
+            text_lines = text.split("\n")
+        else:
+            text_lines = [text]
+        self.text_lines = text_lines
 
     def add_text(self, text: str):
         self.text_lines.append(text)
