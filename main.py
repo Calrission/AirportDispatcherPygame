@@ -7,6 +7,7 @@ from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
 from const import screen_width, screen_height, fps
+from Scenario.Scenario import Scenario
 
 if __name__ == '__main__':
     pygame.init()
@@ -38,6 +39,19 @@ if __name__ == '__main__':
     smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
 
+    scenario = Scenario()
+    # scenario.add_Land('A', 10 * fps)
+    # scenario.add_Land('B', 20 * fps)
+    # scenario.add_Land('A', 15 * fps)
+    #
+    # scenario.add_takeOff('B', 9 * fps)
+    # scenario.add_takeOff('A', 14 * fps)
+    # scenario.add_takeOff('A', 16 * fps)
+
+    # scenario.save('test.scen')
+
+    scenario.load('test.scen')
+
     running = True
 
     while running:
@@ -48,6 +62,7 @@ if __name__ == '__main__':
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
 
+        scenario.tick()
         clock.tick(fps)
         smart_screen.refresh()
         pygame.display.flip()
