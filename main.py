@@ -6,11 +6,14 @@ from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
+from TerminalView import TerminalView
 from const import screen_width, screen_height, fps
 from Scenario.Scenario import Scenario
 
 if __name__ == '__main__':
     pygame.init()
+    pygame.font.init()
+
     pygame.display.set_caption('Диспетчер')
 
     size = width, height = screen_width, screen_height
@@ -31,13 +34,15 @@ if __name__ == '__main__':
     plane3 = controller.add_new_plane(smart_screen)
     plane4 = controller.add_new_plane(smart_screen)
 
+    smart_screen.add_sprite(frame_sprite)
+    smart_screen.add_sprite(clock_sprite)
+
     controller.landing(plane1, 'A')
     controller.landing(plane2, 'B')
     controller.take_off(plane3, 'A')
     controller.take_off(plane4, 'B')
 
-    smart_screen.add_sprite(frame_sprite)
-    smart_screen.add_sprite(clock_sprite)
+    terminal = TerminalView(24, 510, 650, 213)
 
     scenario = Scenario()
     # scenario.add_Land('A', 10 * fps)
@@ -58,6 +63,7 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            terminal.parse_event(event)
 
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
@@ -65,6 +71,7 @@ if __name__ == '__main__':
         scenario.tick()
         clock.tick(fps)
         smart_screen.refresh()
+        terminal.refresh(smart_screen.screen)
         pygame.display.flip()
 
     pygame.quit()
