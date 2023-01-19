@@ -1,12 +1,12 @@
 from TerminalAircrafts import TerminalAircrafts
 import pickle
 
-class Scenario():
+
+class Scenario:
     def __init__(self):
         super().__init__()
         self.time = 0
-        self.scenario = [] #(id, runWay, type, elapsed_time)
-
+        self.scenario = []  # (id, runWay, type, elapsed_time)
 
     def tick(self, terminal: TerminalAircrafts):
         self.time += 1
@@ -16,12 +16,10 @@ class Scenario():
                     terminal.add_aircraft(f'{id} запрашивает {t} с полосы {runWay}.', 10)
                     self.scenario.remove((id, runWay, t, time))
 
-
-
-    def add_Land(self, id: str, runWay: chr, time=0):
+    def add_land(self, id: str, runWay: chr, time=0):
         self.scenario.append((id, runWay, 'L', time))
 
-    def add_takeOff(self, id: str, runWay: chr, time=0):
+    def add_take_off(self, id: str, runWay: chr, time=0):
         self.scenario.append((id, runWay, 'O', time))
 
     def add_weather(self):
@@ -34,7 +32,3 @@ class Scenario():
     def save(self, file):
         with open(file, 'wb') as f:
             pickle.dump(self.scenario, f)
-
-
-
-

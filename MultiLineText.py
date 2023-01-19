@@ -1,5 +1,3 @@
-import math
-
 import pygame.font
 from pygame import Surface
 
