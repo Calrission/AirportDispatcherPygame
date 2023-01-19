@@ -40,8 +40,7 @@ class MultiLineText:
     def __render_multi_line(self, screen: Surface):
         surfaces = []
         for i in self.text_lines:
-            surfaces_line = self.__generate_line_surfaces(i)
-            surfaces += surfaces_line
+            surfaces += self.__generate_line_surfaces(i)
         for i, s in enumerate(surfaces):
             rect = s.get_rect()
             height_text, width_text = rect.height, rect.width

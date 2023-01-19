@@ -8,6 +8,7 @@ class TerminalView:
     def __init__(self, x, y, w, h):
         self.__text_view = MultiLineText(x, y, w, h, color="green", size=16)
         self.active_input = True
+        self.rect = pygame.Rect((x, y, w, h))
 
     def add_command(self, command: str):
         self.__text_view.add_text(command)

@@ -41,7 +41,7 @@ if __name__ == '__main__':
     controller.take_off(plane3, 'A')
     controller.take_off(plane4, 'B')
 
-    terminal = TerminalView(24, 510, 650, 213)
+    terminal = TerminalView(24, 510, 590, 190)
 
     running = True
 
