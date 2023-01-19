@@ -56,6 +56,7 @@ if __name__ == '__main__':
 
         clock.tick(fps)
         smart_screen.refresh()
+        smart_screen.screen.fill("red", terminal.rect)
         terminal.refresh(smart_screen.screen)
         pygame.display.flip()
 

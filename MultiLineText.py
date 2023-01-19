@@ -47,14 +47,25 @@ class MultiLineText:
             screen.blit(s, (self.x, self.y + (height_text + 10) * i))
 
     def __generate_line_surfaces(self, line: str) -> list[Surface]:
-        line_surface = self.__create_text_surface(line)
-        count_surface = math.ceil(line_surface.get_rect().width / self.w)
-        if count_surface <= 1:
-            return [line_surface]
         surfaces = []
-        sim_w = line_surface.get_rect().width // len(line)
-        max_sim_line = self.w // sim_w
-        for i in range(count_surface):
-            text = line[i * max_sim_line: i * max_sim_line + max_sim_line]
-            surfaces.append(self.__create_text_surface(text))
+        now_surface = None
+        now_text = ""
+        while len(line) != 0:
+            if now_surface is None:
+                now_surface = self.__create_text_surface(line[0])
+                now_text = line[0]
+                line = line[1:]
+            else:
+                sim_w = self.font.size(line[0])[0]
+                if now_surface.get_rect().width + sim_w > self.w:
+                    surfaces.append(now_surface)
+                    now_text = ""
+                    now_surface = None
+                else:
+                    now_text += line[0]
+                    now_surface = self.__create_text_surface(now_text)
+                    line = line[1:]
+        if now_text != "" and now_surface is not None:
+            surfaces.append(now_surface)
+
         return surfaces
