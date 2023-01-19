@@ -25,7 +25,7 @@ class TerminalView:
     def parse_event(self, event):
         if event.type == pygame.KEYDOWN and self.active_input:
             if event.key == pygame.K_RETURN:
-                self.__text_view.add_text("")
+                self.__text_view.new_line()
             elif event.key == pygame.K_BACKSPACE:
                 self.__text_view.remove_last()
             else:
