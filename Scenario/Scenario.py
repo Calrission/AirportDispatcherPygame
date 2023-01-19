@@ -1,28 +1,28 @@
-from AircraftController import AircraftController
+from TerminalAircrafts import TerminalAircrafts
 import pickle
 
 class Scenario():
     def __init__(self):
         super().__init__()
         self.time = 0
-        self.scenario = []
+        self.scenario = [] #(id, runWay, type, elapsed_time)
 
 
-    def tick(self):
+    def tick(self, terminal: TerminalAircrafts):
         self.time += 1
         if self.time % 10 == 0:
-            for runWay, time, t in self.scenario:
+            for id, runWay, t, time in self.scenario:
                 if self.time >= time:
-                    print(runWay, t, time) #Тут вызывать добавление самолётов в список ожидания
-                    self.scenario.remove((runWay, time, t))
+                    terminal.add_aircraft(f'{id} запрашивает {t} с полосы {runWay}.', 10)
+                    self.scenario.remove((id, runWay, t, time))
 
 
 
-    def add_Land(self, runWay: chr, time=0):
-        self.scenario.append((runWay, time, 'L'))
+    def add_Land(self, id: str, runWay: chr, time=0):
+        self.scenario.append((id, runWay, 'L', time))
 
-    def add_takeOff(self, runWay: chr, time=0):
-        self.scenario.append((runWay, time, 'O'))
+    def add_takeOff(self, id: str, runWay: chr, time=0):
+        self.scenario.append((id, runWay, 'O', time))
 
     def add_weather(self):
         pass
