@@ -4,7 +4,7 @@ from pygame import Surface
 from MultiLineText import MultiLineText
 
 
-class TerminalView:
+class InputTerminal:
     def __init__(self, x, y, w, h):
         self.__text_view = MultiLineText(x, y, w, h, color="green", size=16)
         self.active_input = True

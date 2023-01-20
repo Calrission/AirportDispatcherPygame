@@ -4,7 +4,7 @@ from const import fps
 import sys
 
 
-class TerminalAircrafts:
+class AircraftsTerminal:
     def __init__(self, x, y, w, h):
         self.__text_view = MultiLineText(x, y, w, h, color="green", size=16)
         self.aircrafts = []  # (text, elapsed_time)

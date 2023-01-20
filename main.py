@@ -6,10 +6,9 @@ from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
-from TerminalView import TerminalView
+from Terminals.TerminalController import TerminalController
 from const import screen_width, screen_height, fps
 from Scenario.Scenario import Scenario
-from TerminalAircrafts import TerminalAircrafts
 
 if __name__ == '__main__':
     pygame.init()
@@ -43,8 +42,6 @@ if __name__ == '__main__':
     controller.take_off(plane3, 'A')
     controller.take_off(plane4, 'B')
 
-    terminal = TerminalView(24, 510, 590, 190)
-
     scenario = Scenario()
     scenario.add_land('bort 1', 'A', 10 * fps)
     scenario.add_land('bort 2', 'B', 18 * fps)
@@ -58,7 +55,7 @@ if __name__ == '__main__':
 
     # scenario.load('test.scen')
 
-    terminalAircrafts = TerminalAircrafts(24 + 650, 510, 650, 213)
+    terminalController = TerminalController(smart_screen)
 
     running = True
 
@@ -66,16 +63,17 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            terminal.parse_event(event)
+            terminalController.parse_event(event)
 
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
-
-        scenario.tick(terminalAircrafts)
         clock.tick(fps)
+
         smart_screen.refresh()
-        terminal.refresh(smart_screen.screen)
-        terminalAircrafts.refresh(smart_screen.screen)
+
+        terminalController.refresh()
+        terminalController.tick_scenario(scenario)
+
         pygame.display.flip()
 
     pygame.quit()
