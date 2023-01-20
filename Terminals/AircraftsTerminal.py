@@ -24,7 +24,7 @@ class AircraftsTerminal:
             for i in range(len(self.aircrafts)):
                 self.aircrafts[i][1] -= 1
                 if self.aircrafts[i][1] < 0:
-                    print('LOL')
+                    print('LOL') # Вызвать анимацию падения
                     sys.exit(0)
             self.pr()
 

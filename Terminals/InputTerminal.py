@@ -25,7 +25,7 @@ class InputTerminal:
 
     def parse_event(self, event):
         if event.type == pygame.KEYDOWN and self.active_input:
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN: # Добавить парсер команды пользователя
                 self.__text_view.new_line()
             elif event.key == pygame.K_BACKSPACE:
                 self.__text_view.remove_last()
