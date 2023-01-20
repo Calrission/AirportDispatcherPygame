@@ -1,7 +1,7 @@
 from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
-from InputTerminal import InputTerminal
-from AircraftsTerminal import AircraftsTerminal
+from Terminals.AircraftsTerminal import AircraftsTerminal
+from Terminals.InputTerminal import InputTerminal
 
 
 class TerminalController:
@@ -15,7 +15,7 @@ class TerminalController:
         self.input_terminal.refresh(self.smart_screen.screen)
         self.output_terminal.refresh(self.smart_screen.screen)
 
-    def tick(self, scenario: Scenario):
+    def tick_scenario(self, scenario: Scenario):
         scenario.time += 1
         if scenario.time % 10 == 0:
             for id, runWay, t, time in scenario.scenario:

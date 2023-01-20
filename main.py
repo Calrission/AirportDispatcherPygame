@@ -6,7 +6,7 @@ from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
 from Sprites.TimeSprite import TimeSprite
-from TerminalController import TerminalController
+from Terminals.TerminalController import TerminalController
 from const import screen_width, screen_height, fps
 from Scenario.Scenario import Scenario
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
         smart_screen.refresh()
 
         terminalController.refresh()
-        terminalController.tick(scenario)
+        terminalController.tick_scenario(scenario)
 
         pygame.display.flip()
 
