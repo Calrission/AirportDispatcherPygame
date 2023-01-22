@@ -44,17 +44,17 @@ if __name__ == '__main__':
     controller.take_off(plane4, 'B')
 
     scenario = Scenario()
-    # scenario.add_land('bort 1', 'A', 10 * fps)
-    # scenario.add_land('bort 2', 'B', 18 * fps)
-    # scenario.add_land('bort 3', 'A', 15 * fps)
-    #
-    # scenario.add_take_off('bort 4', 'B', 9 * fps)
-    # scenario.add_take_off('bort 5', 'A', 14 * fps)
-    # scenario.add_take_off('bort 6', 'A', 16 * fps)
+    scenario.add_land('bort 1', 'A', 10 * fps)
+    scenario.add_land('bort 2', 'B', 18 * fps)
+    scenario.add_land('bort 3', 'A', 15 * fps)
 
-    # scenario.save('test.scen')
+    scenario.add_take_off('bort 4', 'B', 9 * fps)
+    scenario.add_take_off('bort 5', 'A', 14 * fps)
+    scenario.add_take_off('bort 6', 'A', 16 * fps)
 
-    # scenario.load('test.scen')
+    scenario.save('test.scen')
+
+    scenario.load('test.scen')
 
     terminalController = TerminalController(smart_screen)
     commandExecutor = CommandExecutor(controller, terminalController.input_terminal.text_view)

@@ -2,7 +2,7 @@ from Commands.Command import Command
 from MultiLineText import MultiLineText
 
 
-class TestOutCommand(Command):
+class PrintCommand(Command):
 
     @staticmethod
     def get_command_prefix():
