@@ -22,6 +22,10 @@ class MultiLineText:
     def add_text(self, text: str):
         self.text_lines.append(text)
 
+    def add_all_text(self, texts: list[str]):
+        for text in texts:
+            self.add_text(text)
+
     def add_last(self, text: str):
         self.text_lines[-1] += text
 

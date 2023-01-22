@@ -6,6 +6,14 @@ class Command:
     def get_command_prefix():
         return "test"
 
+    @staticmethod
+    def get_description():
+        return "test command"
+
+    @staticmethod
+    def get_signature():
+        return Command.get_command_prefix()
+
     def __init__(self):
         self._params = []
 

@@ -2,11 +2,19 @@ from Commands.Command import Command
 from MultiLineText import MultiLineText
 
 
-class PrintCommand(Command):
+class CommandPrint(Command):
 
     @staticmethod
     def get_command_prefix():
         return "print"
+
+    @staticmethod
+    def get_description():
+        return "Выводит введённые параметры"
+
+    @staticmethod
+    def get_signature():
+        return "print [inf params]"
 
     @staticmethod
     def get_requirements():
