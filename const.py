@@ -1,5 +1,6 @@
 from Commands.Command import *
-from Commands.PrintCommand import PrintCommand
+from Commands.CommandHelp import CommandHelp
+from Commands.CommandPrint import CommandPrint
 
 screen_width = 1280
 screen_height = 720
@@ -12,6 +13,6 @@ minute_length = 30
 hour_length = 18
 
 commands = [
-    Command, PrintCommand
+    Command, CommandPrint, CommandHelp
 ]
 prefix_commands = {i.get_command_prefix(): i for i in commands}

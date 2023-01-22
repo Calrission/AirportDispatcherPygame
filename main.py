@@ -52,9 +52,9 @@ if __name__ == '__main__':
     scenario.add_take_off('bort 5', 'A', 14 * fps)
     scenario.add_take_off('bort 6', 'A', 16 * fps)
 
-    scenario.save('test.scen')
-
-    scenario.load('test.scen')
+    # scenario.save('test.scen')
+    #
+    # scenario.load('test.scen')
 
     terminalController = TerminalController(smart_screen)
     commandExecutor = CommandExecutor(controller, terminalController.input_terminal.text_view)
