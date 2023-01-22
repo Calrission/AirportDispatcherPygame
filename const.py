@@ -1,4 +1,5 @@
 from Commands.Command import *
+from Commands.TestOutCommand import TestOutCommand
 
 screen_width = 1280
 screen_height = 720
@@ -11,5 +12,6 @@ minute_length = 30
 hour_length = 18
 
 commands = [
-    Command
+    Command, TestOutCommand
 ]
+prefix_commands = {i.get_command_prefix(): i for i in commands}

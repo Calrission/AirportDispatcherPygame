@@ -1,16 +1,21 @@
-from AircraftController import AircraftController
+from typing import Type
 from Commands.Command import Command
-from MultiLineText import MultiLineText
 
 
 class CommandExecutor:
-    def __init__(self, aircraft: AircraftController, out: MultiLineText):
-        self.aircraft = aircraft
-        self.out = out
+    def __init__(self, *args):
+        self.requirements = args
         self.commands_history = []
-        self.__command_fun = {
-            Command: lambda command: command.execute()
-        }
 
     def execute(self, command: Command):
-        self.__command_fun[command.__class__](command)
+        requirements = self.get_requirements_for_command(command.__class__)
+        command.execute(*requirements)
+
+    def get_requirements_for_command(self, command: Type[Command]):
+        return [self.__get_requirement(i) for i in command.get_requirements()]
+
+    def __get_requirement(self, requirement: Type):
+        for i in self.requirements:
+            if i.__class__ == requirement:
+                return i
+        return None

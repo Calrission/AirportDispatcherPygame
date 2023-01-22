@@ -1,18 +1,17 @@
-import const
+from const import prefix_commands
 from Commands.Command import Command
 
 
 class CommandFactory:
-    commands = {i.get_command_prefix(): i for i in const.commands}
 
     @staticmethod
-    def get_command(text: str) -> Command:
+    def get_command(text: str) -> Command | None:
         text = text.split(" ")
         prefix = text[0]
         text = " ".join(text[1:])
-        if prefix in CommandFactory.commands:
-            command = CommandFactory.commands[prefix]()
+        if prefix in prefix_commands:
+            command = prefix_commands[prefix]()
         else:
-            raise ValueError(f"Command with {prefix=} not found")
+            return None
         command.parse_text_command(text)
         return command

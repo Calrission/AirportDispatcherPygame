@@ -10,7 +10,7 @@ class CommandInputTerminal(InputTerminal):
     def _enter_user_line(self, text: str):
         command = CommandFactory.get_command(text)
         if command is None:
-            self._text_view.add_text("Command not found")
+            self.text_view.add_text("Command not found")
         else:
             self.command_detect(command)
 

@@ -1,15 +1,28 @@
-class Command:
+from typing import Type
 
+
+class Command:
     @staticmethod
     def get_command_prefix():
-        return "Test"
+        return "test"
 
     def __init__(self):
-        self.__params = []
+        self._params = []
 
     def parse_text_command(self, text: str):
         if len(text) != 0:
-            self.__params = text.split(" ") if " " in text else [text]
+            self._params = text.split(" ") if " " in text else [text]
 
-    def execute(self, **kwargs):
-        print(f"Hello, I am test command :)\nYour {self.__params=}")
+    def execute(self, *args):
+        print(f"Hello, I am test command :)\nYour {self._params=}")
+
+    @staticmethod
+    def _get_requirement(requirement: Type, objects: tuple):
+        for i in objects:
+            if i.__class__ == requirement:
+                return i
+        return None
+
+    @staticmethod
+    def get_requirements():
+        return []

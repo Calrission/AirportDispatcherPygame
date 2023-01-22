@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # scenario.load('test.scen')
 
     terminalController = TerminalController(smart_screen)
-    commandExecutor = CommandExecutor(aircraft=controller, out=terminalController.output_terminal)
+    commandExecutor = CommandExecutor(controller, terminalController.input_terminal.text_view)
     terminalController.input_terminal.command_detect = lambda command: commandExecutor.execute(command)
 
     running = True
