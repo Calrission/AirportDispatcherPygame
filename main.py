@@ -1,6 +1,7 @@
 import pygame
 
 from AircraftController import AircraftController
+from Commands.CommandExecutor import CommandExecutor
 from GameClock import GameClock
 from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
@@ -43,19 +44,21 @@ if __name__ == '__main__':
     controller.take_off(plane4, 'B')
 
     scenario = Scenario()
-    scenario.add_land('bort 1', 'A', 10 * fps)
-    scenario.add_land('bort 2', 'B', 18 * fps)
-    scenario.add_land('bort 3', 'A', 15 * fps)
-
-    scenario.add_take_off('bort 4', 'B', 9 * fps)
-    scenario.add_take_off('bort 5', 'A', 14 * fps)
-    scenario.add_take_off('bort 6', 'A', 16 * fps)
+    # scenario.add_land('bort 1', 'A', 10 * fps)
+    # scenario.add_land('bort 2', 'B', 18 * fps)
+    # scenario.add_land('bort 3', 'A', 15 * fps)
+    #
+    # scenario.add_take_off('bort 4', 'B', 9 * fps)
+    # scenario.add_take_off('bort 5', 'A', 14 * fps)
+    # scenario.add_take_off('bort 6', 'A', 16 * fps)
 
     # scenario.save('test.scen')
 
     # scenario.load('test.scen')
 
     terminalController = TerminalController(smart_screen)
+    commandExecutor = CommandExecutor(aircraft=controller, out=terminalController.output_terminal)
+    terminalController.input_terminal.command_detect = lambda command: commandExecutor.execute(command)
 
     running = True
 
