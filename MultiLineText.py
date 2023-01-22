@@ -3,11 +3,13 @@ from pygame import Surface
 
 
 class MultiLineText:
-    def __init__(self, x, y, w, h, color="white", size=24, font=pygame.font.get_default_font()):
+    def __init__(self, x, y, w, h, color="white", size=24, font=pygame.font.get_default_font(), text=""):
         self.x, self.y, self.w, self.h = x, y, w, h
         self.size = size
         self.color = color
         self.text_lines = []
+        if len(text) != 0:
+            self.text_lines.append(text)
         self.font = pygame.font.Font(font, self.size)
 
     def change_text(self, text: str):
@@ -28,6 +30,9 @@ class MultiLineText:
 
     def new_line(self):
         self.text_lines.append("")
+
+    def get_last(self):
+        return self.text_lines[-1]
 
     def refresh(self, screen: Surface):
         self.__render_multi_line(screen)

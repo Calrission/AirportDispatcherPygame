@@ -1,14 +1,14 @@
 from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
 from Terminals.AircraftsTerminal import AircraftsTerminal
-from Terminals.InputTerminal import InputTerminal
+from Terminals.CommandInputTerminal import CommandInputTerminal
 
 
 class TerminalController:
     def __init__(self, smart_screen: SmartScreen):
         self.smart_screen = smart_screen
 
-        self.input_terminal = InputTerminal(24, 510, 590, 190)
+        self.input_terminal = CommandInputTerminal(24, 510, 590, 190)
         self.output_terminal = AircraftsTerminal(665, 510, 590, 190)
 
     def refresh(self):
