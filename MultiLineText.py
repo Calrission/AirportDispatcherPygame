@@ -29,6 +29,9 @@ class MultiLineText:
     def new_line(self):
         self.text_lines.append("")
 
+    def get_last(self):
+        return self.text_lines[-1]
+
     def refresh(self, screen: Surface):
         self.__render_multi_line(screen)
 
