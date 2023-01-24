@@ -18,6 +18,11 @@ class AircraftController:
     def remove_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.remove(aircraft)
 
+    def get_aicraft(self, ID: str):
+        for i in self.aircrafts:
+            if i.ID == ID:
+                return i
+
     def landing(self, aircraft: FlyTransport, runWay: chr):
         if aircraft not in self.aircrafts:
             raise ValueError("aircraft not exist in controller")

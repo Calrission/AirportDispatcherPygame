@@ -14,6 +14,11 @@ class PlaneAnimationFall(PlaneAnimation):
             self.sprite.current_img = pygame.Surface((4, 4))
             self.sprite.current_img.fill('black')
             self.sprite.move(1280 - self.sprite.current_img.get_size()[0] - 80, 10)
+        if self.frame == 5 * fps:
+            self.sprite.size = [40, 40]
+            self.sprite.x = self.sprite.x - self.sprite.size[0] // 2
+            self.sprite.y = self.sprite.y - self.sprite.size[1]
+            self.sprite.current_img = pygame.transform.scale(self.sprite.sprites[2][0], self.sprite.size)
 
         if self.frame <= fps * 2:
             self.sprite.x += self.velocity[0]
@@ -30,10 +35,9 @@ class PlaneAnimationFall(PlaneAnimation):
             self.sprite.y += self.velocity[1]
             self.velocity[1] += 0.015
 
-        if self.frame == fps * 5:
-            self.is_play = False
 
-            self.sprite.size = [40, 40]
-            self.sprite.x = self.sprite.x - self.sprite.size[0] // 2
-            self.sprite.y = self.sprite.y - self.sprite.size[1]
+        if self.frame == 9 * fps:
+            self.is_play = False
+            self.frame = 0
+            self.sprite.size = [0 ,0]
             self.sprite.current_img = pygame.transform.scale(self.sprite.sprites[2][0], self.sprite.size)

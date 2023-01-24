@@ -10,6 +10,7 @@ from Sprites.TimeSprite import TimeSprite
 from Terminals.TerminalController import TerminalController
 from const import screen_width, screen_height, fps
 from Scenario.Scenario import Scenario
+from Sprites.Menu.Menu import Menu
 
 if __name__ == '__main__':
     pygame.init()
@@ -62,7 +63,15 @@ if __name__ == '__main__':
     #
     # scenario.load('test.scen')
 
-    terminalController = TerminalController(smart_screen)
+
+    menu = Menu()
+
+    menu.append_option('Levels', lambda: print('Открыть уровни'))
+    menu.append_option('Exit', lambda: pygame.quit())
+
+
+
+    terminalController = TerminalController(smart_screen, controller)
     commandExecutor = CommandExecutor(controller, terminalController.input_terminal.text_view)
     terminalController.input_terminal.command_detect = lambda command: commandExecutor.execute(command)
 
@@ -73,12 +82,14 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
             terminalController.parse_event(event)
+            menu.parse_event(event)
 
         game_clock.tick()
         clock_sprite.change_time_pos(game_clock.hour, game_clock.minute)
         clock.tick(fps)
 
         smart_screen.refresh()
+        menu.draw(smart_screen.screen, 100, 100, 75)
 
         terminalController.refresh()
         terminalController.tick_scenario(scenario)
