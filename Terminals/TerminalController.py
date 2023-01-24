@@ -20,7 +20,7 @@ class TerminalController:
         if scenario.time % 10 == 0:
             for id, runWay, t, time in scenario.scenario:
                 if scenario.time >= time:
-                    self.output_terminal.add_aircraft(f'{id} запрашивает {t} с полосы {runWay}.', 10)
+                    self.output_terminal.add_aircraft(f'{id} запрашивает {t} {runWay}.', 10)
                     scenario.scenario.remove((id, runWay, t, time))
 
     def parse_event(self, event):

@@ -22,7 +22,7 @@ class MultiSprite(Sprite):
 
 
     def changeSprite(self, img: str):
-        self.current_img  = self.sprites[self.sprites.index(img)]
+        self.sprite.current_img  = self.sprites[self.sprites.index(img)]
         self.size = self.current_img.get_size()
 
     def draw(self, screen: Surface):

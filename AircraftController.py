@@ -2,6 +2,7 @@ from Animation.PlaneAnimationLandA import PlaneAnimationLandA
 from Animation.PlaneAnimationLandB import PlaneAnimationLandB
 from Animation.PlaneAnimationTakeOffA import PlaneAnimationTakeOffA
 from Animation.PlaneAnimationTakeOffB import PlaneAnimationTakeOffB
+from Animation.PlaneAnimationFall import PlaneAnimationFall
 from SmartScreen import SmartScreen
 from Sprites.FlyTransport import FlyTransport
 from Sprites.Plane import Plane
@@ -35,8 +36,13 @@ class AircraftController:
         elif runWay == 'B':
             aircraft.animation = PlaneAnimationTakeOffB(aircraft)
 
-    def add_new_plane(self, smart_screen: SmartScreen) -> Plane:
-        plane = Plane.get_instance(0, 0)
+    def fall(self, aircraft: FlyTransport):
+        if aircraft not in self.aircrafts:
+            raise ValueError("aircraft not exist in controller")
+        aircraft.animation = PlaneAnimationFall(aircraft)
+
+    def add_new_plane(self, smart_screen: SmartScreen, Plane_ID:str) -> Plane:
+        plane = Plane.get_instance(0, 0, Plane_ID)
         smart_screen.add_sprite(plane)
         self.add_aircraft(plane)
         return plane

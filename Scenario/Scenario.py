@@ -8,10 +8,10 @@ class Scenario:
         self.scenario = []  # (id, runWay, type, elapsed_time)
 
     def add_land(self, id: str, runWay: chr, time=0):
-        self.scenario.append((id, runWay, 'L', time))
+        self.scenario.append((id, runWay, 'посадку на полосу', time))
 
     def add_take_off(self, id: str, runWay: chr, time=0):
-        self.scenario.append((id, runWay, 'O', time))
+        self.scenario.append((id, runWay, 'взлёт с полосы', time))
 
     def add_weather(self):
         pass

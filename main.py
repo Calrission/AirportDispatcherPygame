@@ -30,10 +30,10 @@ if __name__ == '__main__':
     smart_screen.add_sprite(background_sprite)
 
     controller = AircraftController()
-    plane1 = controller.add_new_plane(smart_screen)
-    plane2 = controller.add_new_plane(smart_screen)
-    plane3 = controller.add_new_plane(smart_screen)
-    plane4 = controller.add_new_plane(smart_screen)
+    plane1 = controller.add_new_plane(smart_screen, '001')
+    plane2 = controller.add_new_plane(smart_screen, '002')
+    plane3 = controller.add_new_plane(smart_screen, '003')
+    plane4 = controller.add_new_plane(smart_screen, '004')
 
     smart_screen.add_sprite(frame_sprite)
     smart_screen.add_sprite(clock_sprite)
@@ -42,15 +42,21 @@ if __name__ == '__main__':
     controller.landing(plane2, 'B')
     controller.take_off(plane3, 'A')
     controller.take_off(plane4, 'B')
+    controller.fall(plane4)
 
     scenario = Scenario()
-    scenario.add_land('bort 1', 'A', 10 * fps)
-    scenario.add_land('bort 2', 'B', 18 * fps)
-    scenario.add_land('bort 3', 'A', 15 * fps)
+    scenario.add_land('001', 'A', 5 * fps)
+    scenario.add_land('002', 'B', 6 * fps)
+    scenario.add_land('003', 'A', 7 * fps)
+    scenario.add_take_off('004', 'A', 10 * fps)
 
-    scenario.add_take_off('bort 4', 'B', 9 * fps)
-    scenario.add_take_off('bort 5', 'A', 14 * fps)
-    scenario.add_take_off('bort 6', 'A', 16 * fps)
+    # scenario.add_land('bort 1', 'A', 10 * fps)
+    # scenario.add_land('bort 2', 'B', 18 * fps)
+    # scenario.add_land('bort 3', 'A', 15 * fps)
+    #
+    # scenario.add_take_off('bort 4', 'B', 9 * fps)
+    # scenario.add_take_off('bort 5', 'A', 14 * fps)
+    # scenario.add_take_off('bort 6', 'A', 16 * fps)
 
     # scenario.save('test.scen')
     #

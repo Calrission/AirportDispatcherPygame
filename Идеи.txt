@@ -1,7 +1,7 @@
 Скорость ветра показать корнусным флагом
 https://yandex.ru/images/search?from=tabbar&text=ветроуказатель&pos=38&img_url=http%3A%2F%2Fvetroukazateli.ru%2Fupload%2Fiblock%2F7d4%2F8n3zgwz6p8m0k0ds4gt3fwa6sq1qpct8.png&rpt=simage&lr=20523
 
-Анимация падения самолёта при израсходывании топлива
-Добавить функцию в AircraftController для создания самолётов из сценария
-Пасажировместимость
-В Plane добавить id
+    Анимация падения самолёта при израсходывании топлива
+Добавить функцию в AircraftController для создания самолётов из сценария (возможгно уже есть add_new_plane)
+    Пасажировместимость
+    В Plane добавить id
