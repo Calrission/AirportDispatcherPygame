@@ -16,7 +16,7 @@ class App:
         self.running = True
 
         size = screen_width, screen_height
-        surface = pygame.display.set_mode(size)
+        self.surface = pygame.display.set_mode(size)
 
         self.clock = pygame.time.Clock()
 
@@ -26,8 +26,8 @@ class App:
         scenario.add_land('003', 'A', 7 * fps)
         scenario.add_take_off('004', 'A', 10 * fps)
 
-        self.menu = Menu(100, 100, 75, surface)
-        self.game = Game(surface, scenario, self.clock)
+        self.menu = Menu(100, 100, 75, self.surface)
+        self.game = Game(self.surface, scenario, self.clock)
 
         self.now_screen: Screen = self.menu
 
@@ -36,6 +36,7 @@ class App:
         self.menu.append_option('Exit', lambda: pygame.quit())
 
     def tick(self):
+        self.surface.fill("black")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
