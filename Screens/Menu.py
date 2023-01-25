@@ -1,8 +1,12 @@
 import pygame.font
 
+from Screens.Screen import Screen
 
-class Menu:
-    def __init__(self):
+
+class Menu(Screen):
+    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface):
+        super().__init__(x, y, surface)
+        self.padding = padding
         self._option_surfaces = []
         self._callbacks = []
         self._current_option = 0
@@ -17,13 +21,13 @@ class Menu:
     def select(self):
         self._callbacks[self._current_option]()
 
-    def draw(self, surf, x, y, option_padding):
+    def draw(self):
         for i, option in enumerate(self._option_surfaces):
             rect = option.get_rect()
-            rect.topleft = (x, y + i * option_padding)
+            rect.topleft = (self.x, self.y + i * self.padding)
             if i == self._current_option:
-                pygame.draw.rect(surf, (0, 100, 0), rect)
-            surf.blit(option, rect)
+                pygame.draw.rect(self.surface, (0, 100, 0), rect)
+            self.surface.blit(option, rect)
 
     def parse_event(self, e):
         if e.type == pygame.KEYDOWN:
