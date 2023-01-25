@@ -44,8 +44,6 @@ class InputTerminal:
                     self.text_view.remove_last_index(self._cursor_index_text, self._cursor_index_text + 1)
                 if len(self.text_view.text_lines) != 0:
                     user_line = self.text_view.get_last()[2:]
-                    if self.__now_showing_cursor:
-                        user_line = user_line[:-len(self.cursor_sim)]
                     self._enter_user_line(user_line)
                 self.text_view.new_line()
                 self.text_view.add_last("> ")
