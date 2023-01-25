@@ -51,25 +51,10 @@ if __name__ == '__main__':
     scenario.add_land('003', 'A', 7 * fps)
     scenario.add_take_off('004', 'A', 10 * fps)
 
-    # scenario.add_land('bort 1', 'A', 10 * fps)
-    # scenario.add_land('bort 2', 'B', 18 * fps)
-    # scenario.add_land('bort 3', 'A', 15 * fps)
-    #
-    # scenario.add_take_off('bort 4', 'B', 9 * fps)
-    # scenario.add_take_off('bort 5', 'A', 14 * fps)
-    # scenario.add_take_off('bort 6', 'A', 16 * fps)
-
-    # scenario.save('test.scen')
-    #
-    # scenario.load('test.scen')
-
-
     menu = Menu()
 
     menu.append_option('Levels', lambda: print('Открыть уровни'))
     menu.append_option('Exit', lambda: pygame.quit())
-
-
 
     terminalController = TerminalController(smart_screen, controller)
     commandExecutor = CommandExecutor(controller, terminalController.input_terminal.text_view)
@@ -93,6 +78,7 @@ if __name__ == '__main__':
 
         terminalController.refresh()
         terminalController.tick_scenario(scenario)
+        terminalController.tick()
 
         pygame.display.flip()
 

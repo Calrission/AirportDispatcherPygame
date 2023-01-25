@@ -27,10 +27,21 @@ class MultiLineText:
             self.add_text(text)
 
     def add_last(self, text: str):
+        index_new_last = len(self.text_lines[-1])
         self.text_lines[-1] += text
+        return index_new_last
 
     def remove_last(self):
         self.text_lines[-1] = self.text_lines[-1][:-1]
+
+    def insert_last(self, text, index):
+        self.text_lines[-1] = self.text_lines[-1][:index] + text + self.text_lines[-1][index:]
+
+    def remove_last_index(self, start, end):
+        self.text_lines[-1] = self.text_lines[-1].replace(self.get_from_last_index(start, end), "")
+
+    def get_from_last_index(self, start, end):
+        return self.text_lines[-1][start:end]
 
     def new_line(self):
         self.text_lines.append("")

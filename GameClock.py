@@ -7,7 +7,6 @@ class GameClock(Timer):
         self.hour = hour
         self.minute = minute
         self.fps = fps
-        self.frame_number = 0
 
     def get_minute(self):
         return self.minute * 5
