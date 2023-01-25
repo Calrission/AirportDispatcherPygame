@@ -21,13 +21,17 @@ class AircraftsTerminal:
         for i in self.aircrafts:
             self.__text_view.add_text(f'{i[0]} Осталось {i[1]}с')
 
+    def remove(self, id):
+        self.aircrafts.remove([i for i in self.aircrafts if id in i[0]][0])
+
     def tick(self):
         if self.frame % fps == 0:
             d = []
             for i in range(len(self.aircrafts)):
                 self.aircrafts[i][1] -= 1
-                if self.aircrafts[i][1] < 0:
-                    self.controller.fall(self.controller.get_aicraft(self.aircrafts[i][0].split()[0]))
+                aircraft = self.controller.get_aicraft(self.aircrafts[i][0].split()[0])
+                if self.aircrafts[i][1] < 0 and aircraft.animation is None:
+                    self.controller.fall(aircraft)
                     d.append(i)
             for i in d:
                 del self.aircrafts[i]

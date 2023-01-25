@@ -6,6 +6,7 @@ class Sprite:
         self.x = x
         self.y = y
         self.coord = (x, y)
+        self.show = True
 
     def move(self, x: int, y: int):
         self.x, self.y = x, y

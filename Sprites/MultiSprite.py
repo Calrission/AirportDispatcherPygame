@@ -1,7 +1,6 @@
 from Sprites.Sprite import Sprite
 from pygame import Surface
 import pygame
-from const import screen_width, screen_height
 
 
 class MultiSprite(Sprite):

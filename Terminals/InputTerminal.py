@@ -48,8 +48,10 @@ class InputTerminal:
                 self.text_view.new_line()
                 self.text_view.add_last("> ")
             elif event.key == pygame.K_BACKSPACE:
-                self.text_view.remove_last_index(self._cursor_index_text, self._cursor_index_text + 1)
-                self.text_view.remove_last()
+                if (not self.__now_showing_cursor and len(self.text_view.get_last()) != 2) or \
+                        (self.__now_showing_cursor and len(self.text_view.get_last()) != 3):
+                    self.text_view.remove_last_index(self._cursor_index_text, self._cursor_index_text + 1)
+                    self.text_view.remove_last()
                 self.refresh_cursor()
             else:
                 sim = event.unicode

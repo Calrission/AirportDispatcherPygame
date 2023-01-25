@@ -21,10 +21,10 @@ class App:
         self.clock = pygame.time.Clock()
 
         scenario = Scenario()
-        scenario.add_land('001', 'A', 5 * fps)
-        scenario.add_land('002', 'B', 6 * fps)
-        scenario.add_land('003', 'A', 7 * fps)
-        scenario.add_take_off('004', 'A', 10 * fps)
+        scenario.add_land('001', 'A', 1 * fps)
+        scenario.add_land('002', 'B', 2 * fps)
+        scenario.add_land('003', 'A', 5 * fps)
+        scenario.add_take_off('004', 'A', 8 * fps)
 
         self.menu = Menu(100, 100, 75, self.surface)
         self.game = Game(self.surface, scenario, self.clock)

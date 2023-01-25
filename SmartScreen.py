@@ -21,5 +21,6 @@ class SmartScreen:
     def refresh(self):
         self.screen.fill(self.background_color)
         for sprite in self._sprites:
-            sprite.update()
-            sprite.draw(self.screen)
+            if sprite.show:
+                sprite.update()
+                sprite.draw(self.screen)
