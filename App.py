@@ -22,18 +22,19 @@ class App:
 
         self.scenario = Scenario()
 
-        self.menu = Menu(100, 100, 75, self.surface)
-        self.levels = Menu(100, 100, 75, self.surface )
+        self.menu = Menu(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png')
+        self.levels = Menu(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png')
 
         self.now_screen: Screen = self.menu
 
-        self.menu.append_option("Debug: Start", lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/debagScenario.scen'), self.clock)))
-        self.menu.append_option('Levels', lambda: self.change_screen(self.levels))
-        self.menu.append_option('Exit', lambda: pygame.quit())
+        self.menu.append_option("Отладка: Старт", lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/debagScenario.scen'), self.clock)))
+        self.menu.append_option('Уровни', lambda: self.change_screen(self.levels))
+        self.menu.append_option('О программе', lambda: print('Экран о программе'))
+        self.menu.append_option('Выход', lambda: pygame.quit())
 
-        self.levels.append_option('Level-1', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-1.scen'), self.clock)))
-        self.levels.append_option('Level-2', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-2.scen'), self.clock)))
-        self.levels.append_option('Level-3', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-3.scen'), self.clock)))
+        self.levels.append_option('Уровень-1', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-1.scen'), self.clock)))
+        self.levels.append_option('Уровень-2', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-2.scen'), self.clock)))
+        self.levels.append_option('Уровень-3', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-3.scen'), self.clock)))
 
     def tick(self):
         self.surface.fill("black")
