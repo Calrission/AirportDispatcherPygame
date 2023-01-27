@@ -10,9 +10,10 @@ class Menu(Screen):
         self._option_surfaces = []
         self._callbacks = []
         self._current_option = 0
+        self.font = pygame.font.SysFont('arial', 50)
 
     def append_option(self, option, callback):
-        self._option_surfaces.append(pygame.font.SysFont('arial', 50).render(option, True, (255, 255, 255)))
+        self._option_surfaces.append(self.font.render(option, True, (255, 255, 255)))
         self._callbacks.append(callback)
 
     def switch(self, direction):
@@ -31,9 +32,12 @@ class Menu(Screen):
 
     def parse_event(self, e):
         if e.type == pygame.KEYDOWN:
-            if e.key == pygame.K_w:
+            if e.key == pygame.K_w or e.key == pygame.K_UP:
                 self.switch(-1)
-            elif e.key == pygame.K_s:
+            elif e.key == pygame.K_s or e.key == pygame.K_DOWN:
                 self.switch(1)
-            elif e.key == pygame.K_SPACE:
+            elif e.key == pygame.K_SPACE or e.key == pygame.K_RETURN:
                 self.select()
+
+
+

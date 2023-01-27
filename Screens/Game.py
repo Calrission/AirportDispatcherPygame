@@ -30,19 +30,8 @@ class Game(Screen):
         self.smart_screen.add_sprite(self.background_sprite)
 
         self.controller = AircraftController()
-        plane1 = self.controller.add_new_plane(self.smart_screen, '001')
-        plane2 = self.controller.add_new_plane(self.smart_screen, '002')
-        plane3 = self.controller.add_new_plane(self.smart_screen, '003')
-        plane4 = self.controller.add_new_plane(self.smart_screen, '004')
-
         self.smart_screen.add_sprite(self.frame_sprite)
         self.smart_screen.add_sprite(self.clock_sprite)
-
-        self.controller.landing(plane1, 'A')
-        self.controller.landing(plane2, 'B')
-        self.controller.take_off(plane3, 'A')
-        self.controller.take_off(plane4, 'B')
-        self.controller.fall(plane4)
 
         self.terminalController = TerminalController(self.smart_screen, self.controller)
         self.commandExecutor = CommandExecutor(self.controller, self.terminalController.input_terminal.text_view)

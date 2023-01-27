@@ -20,20 +20,20 @@ class App:
 
         self.clock = pygame.time.Clock()
 
-        scenario = Scenario()
-        scenario.add_land('001', 'A', 5 * fps)
-        scenario.add_land('002', 'B', 6 * fps)
-        scenario.add_land('003', 'A', 7 * fps)
-        scenario.add_take_off('004', 'A', 10 * fps)
+        self.scenario = Scenario()
 
         self.menu = Menu(100, 100, 75, self.surface)
-        self.game = Game(self.surface, scenario, self.clock)
+        self.levels = Menu(100, 100, 75, self.surface )
 
         self.now_screen: Screen = self.menu
 
-        self.menu.append_option("Debug: Start", lambda: self.change_screen(self.game))
-        self.menu.append_option('Levels', lambda: print('Открыть уровни'))
+        self.menu.append_option("Debug: Start", lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/debagScenario.scen'), self.clock)))
+        self.menu.append_option('Levels', lambda: self.change_screen(self.levels))
         self.menu.append_option('Exit', lambda: pygame.quit())
+
+        self.levels.append_option('Level-1', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-1.scen'), self.clock)))
+        self.levels.append_option('Level-2', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-2.scen'), self.clock)))
+        self.levels.append_option('Level-3', lambda: self.change_screen(Game(self.surface, self.load_level('Scenario/Level-3.scen'), self.clock)))
 
     def tick(self):
         self.surface.fill("black")
@@ -43,7 +43,6 @@ class App:
             self.now_screen.parse_event(event)
 
         self.clock.tick(fps)
-        self.menu.draw()
 
         self.now_screen.draw()
 
@@ -51,3 +50,7 @@ class App:
 
     def change_screen(self, screen: Screen):
         self.now_screen = screen
+
+    def load_level(self, file: str):
+        self.scenario.load(file)
+        return self.scenario
