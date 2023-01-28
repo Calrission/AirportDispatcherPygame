@@ -17,9 +17,15 @@ class Scenario:
         pass
 
     def load(self, file):
-        with open(file, 'rb') as f:
-            self.scenario = pickle.load(f)
+        try:
+            with open(file, 'rb') as f:
+                self.scenario = pickle.load(f)
+        except Exception as ex:
+            print(ex)
 
     def save(self, file):
-        with open(file, 'wb') as f:
-            pickle.dump(self.scenario, f)
+        try:
+            with open(file, 'wb') as f:
+                pickle.dump(self.scenario, f)
+        except Exception as ex:
+            print(ex)
