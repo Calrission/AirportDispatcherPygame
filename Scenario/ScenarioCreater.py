@@ -4,6 +4,7 @@ from const import fps
 sct = Scenario()
 
 sct.add_land('001', 'A', 5 * fps, 10)
+sct.add_take_off("000", 'A', 4 * fps, 20)
 sct.add_land('002', 'B', 6 * fps, 12)
 sct.add_land('003', 'A', 7 * fps, 14)
 sct.add_take_off('004', 'A', 10 * fps, 16)

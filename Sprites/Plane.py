@@ -1,9 +1,9 @@
-from Sprites.FlyTransport import FlyTransport
+from Sprites.FlyTransport import *
 
 
 class Plane(FlyTransport):
     @staticmethod
-    def get_instance(x, y, ID, **kwargs):
+    def get_instance(x, y, ID, status: StatusFlyTransport, **kwargs):
         return Plane(x, y, [['Sprites/Airplane/LeftStrip/TakesOff.png',
                              'Sprites/Airplane/LeftStrip/TakeOff.png',
                              'Sprites/Airplane/LeftStrip/GoAway.png',
@@ -16,11 +16,10 @@ class Plane(FlyTransport):
                              'Sprites/Airplane/RightStrip/GoIn.png',
                              'Sprites/Airplane/RightStrip/Landing.png',
                              'Sprites/Airplane/RightStrip/Landed.png'],
-                             ['Sprites/Boom.png']
-                            ], ID, *kwargs)
+                            ['Sprites/Boom.png']
+                            ], ID, status, *kwargs)
 
-    def __init__(self, x: int, y: int, images: list, ID:str, size=[0, 0], fuel=100, rateFuel=50, mass=10, landTime=10,
-                 takeOffTime=10, capacity = 500):
-        super().__init__(x, y, images, ID, size, fuel, rateFuel, mass, landTime, takeOffTime)
+    def __init__(self, x: int, y: int, images: list, ID: str, status: StatusFlyTransport, size=[0, 0],
+                 fuel=100, rateFuel=50, mass=10, landTime=10, takeOffTime=10, capacity=500):
+        super().__init__(x, y, images, ID, status, size, fuel, rateFuel, mass, landTime, takeOffTime)
         self.capacity = capacity
-

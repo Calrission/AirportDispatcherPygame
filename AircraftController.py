@@ -5,7 +5,7 @@ from Animation.PlaneAnimationTakeOffB import PlaneAnimationTakeOffB
 from Animation.PlaneAnimationFall import PlaneAnimationFall
 from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
-from Sprites.FlyTransport import FlyTransport
+from Sprites.FlyTransport import *
 from Sprites.Plane import Plane
 
 
@@ -34,6 +34,8 @@ class AircraftController:
         elif runWay == 'B':
             aircraft.animation = PlaneAnimationLandB(aircraft)
 
+        aircraft.landing()
+
     def take_off(self, aircraft: FlyTransport, runWay: chr):
         aircraft.show = True
         if aircraft not in self.aircrafts:
@@ -44,20 +46,22 @@ class AircraftController:
         elif runWay == 'B':
             aircraft.animation = PlaneAnimationTakeOffB(aircraft)
 
+        aircraft.takeOff()
+
     def fall(self, aircraft: FlyTransport):
         aircraft.show = True
         if aircraft not in self.aircrafts:
             raise ValueError("aircraft not exist in controller")
         aircraft.animation = PlaneAnimationFall(aircraft)
 
-    def add_new_plane(self, smart_screen: SmartScreen, Plane_ID:str) -> Plane:
-        plane = Plane.get_instance(0, 0, Plane_ID)
+    def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
+        plane = Plane.get_instance(0, 0, Plane_ID, status)
         plane.show = False
         smart_screen.add_sprite(plane)
         self.add_aircraft(plane)
         return plane
 
     def fill_aircrafts_from_scenario(self, scenario: Scenario, smart_screen: SmartScreen):
-        ids = scenario.get_all_ids_aircrafts()
-        for id in ids:
-            self.add_new_plane(smart_screen, id)
+        ids = scenario.get_all_init_info_aircrafts()
+        for id, status in ids:
+            self.add_new_plane(smart_screen, id, status)
