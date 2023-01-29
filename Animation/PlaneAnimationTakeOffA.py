@@ -74,4 +74,7 @@ class PlaneAnimationTakeOffA(PlaneAnimation):
             self.sprite.x += self.velocity[0]
             self.sprite.y += self.velocity[1]
 
-
+        if self.frame > fps * 20:
+            self.is_play = False
+            self.is_finish = True
+            self.frame = 0

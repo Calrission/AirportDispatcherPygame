@@ -12,7 +12,7 @@ from Sprites.Plane import Plane
 
 class AircraftController:
     def __init__(self):
-        self.aircrafts = []
+        self.aircrafts: list[FlyTransport] = []
         self.way_A = None
         self.way_B = None
 
@@ -80,6 +80,7 @@ class AircraftController:
         aircraft.show = True
         if aircraft not in self.aircrafts:
             raise ValueError("aircraft not exist in controller")
+        aircraft.show = False
         aircraft.animation = FailTakeOffAnimation(aircraft)
         aircraft.fail_take_off()
 
@@ -109,14 +110,17 @@ class AircraftController:
     def refresh_way_a(self):
         if self.way_A is not None:
             if isinstance(self.way_A, Plane):
-                self.way_A = None if self.way_A.is_already_animate and self.way_A.animation is None else self.way_A
+                self.way_A = None if self.way_A.is_finish and self.way_A.animation is None else self.way_A
 
     def refresh_way_b(self):
         if self.way_B is not None:
             if isinstance(self.way_B, Plane):
-                self.way_B = None if self.way_B.is_already_animate and self.way_B.animation is None else self.way_B
+                self.way_B = None if self.way_B.is_finish and self.way_B.animation is None else self.way_B
 
     def tick_check_collision(self):
+        for i in self.aircrafts:
+            if i.is_finish:
+                self.remove_aircraft(i)
         for first, second in self.check_collision:
             if first.check_collision(second.rect):
                 self.boom(first, second)

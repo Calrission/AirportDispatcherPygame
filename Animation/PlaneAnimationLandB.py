@@ -54,4 +54,5 @@ class PlaneAnimationLandB(PlaneAnimation):
 
         if self.frame > fps * 12:
             self.is_play = False
+            self.is_finish = True
             self.frame = 0

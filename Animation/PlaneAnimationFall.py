@@ -37,6 +37,7 @@ class PlaneAnimationFall(PlaneAnimation):
 
         if self.frame == 9 * fps:
             self.is_play = False
+            self.is_finish = True
             self.frame = 0
             self.sprite.size = [0, 0]
             self.sprite.current_img = pygame.transform.scale(self.sprite.sprites[2][0], self.sprite.size)

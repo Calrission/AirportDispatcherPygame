@@ -34,7 +34,8 @@ class AircraftsTerminal:
                 if self.showing_aircrafts_info[i][1] < 0 and aircraft.animation is None:
                     if aircraft.status == StatusFlyTransport.FLY:
                         self.controller.fall(aircraft)
-
+                    elif aircraft.status == StatusFlyTransport.GROUND:
+                        self.controller.fail_take_off(aircraft)
                     deads.append(i)
             for i in deads:
                 del self.showing_aircrafts_info[i]
