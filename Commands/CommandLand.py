@@ -28,7 +28,10 @@ class CommandLand(Command):
         terminal: AircraftsTerminal = self._get_requirement(AircraftsTerminal, args)
         try:
             id = self._params[0]
-            way = self._params[1]
+            way = self._params[1].upper()
+            if way not in ["A", "B"]:
+                out.add_text("Только полосы A и B")
+                return
             aircraft = controller.get_aicraft(id)
             if aircraft is None:
                 out.add_text(f"Самолет с ID={id} не найден")
