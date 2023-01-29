@@ -40,7 +40,7 @@ class CommandLand(Command):
                 out.add_text(f"Самолет с ID={id} не найден")
                 return
             if aircraft.status != StatusFlyTransport.FLY:
-                out.add_text("Данный самолет уже не находиться в воздухе или больше не может приземлиться")
+                out.add_text("Данный самолет уже находиться на земле или больше не может приземлиться")
                 return
             if aircraft.animation is None:
                 controller.landing(aircraft, way)
