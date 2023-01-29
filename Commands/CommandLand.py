@@ -29,10 +29,14 @@ class CommandLand(Command):
             id = self._params[0]
             way = self._params[1]
             aircraft = controller.get_aicraft(id)
-            controller.landing(aircraft, way)
-            terminal.remove(id)
-        except Exception:
+            if aircraft.animation is None:
+                controller.landing(aircraft, way)
+                terminal.remove(id)
+            else:
+                out.add_text("Этот самолет уже невозможно посадить")
+        except Exception as e:
             out.add_text("Ошибка при выполнении команды")
+            print(e)
 
 
 

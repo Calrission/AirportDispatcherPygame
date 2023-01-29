@@ -8,33 +8,33 @@ import sys
 class AircraftsTerminal:
     def __init__(self, x, y, w, h, controller: AircraftController):
         self.__text_view = MultiLineText(x, y, w, h, color="green", size=20, font='Fonts/clacon2.ttf')
-        self.aircrafts = []  # (text, elapsed_time)
+        self.showing_aircrafts_info = []  # (text, elapsed_time)
         self.frame = 0
         self.controller = controller
 
     def add_aircraft(self, aircraft: str, time: int):
-        self.aircrafts.append([aircraft, time])
+        self.showing_aircrafts_info.append([aircraft, time])
         self.pr()
 
     def pr(self):
         self.__text_view.change_text('')
-        for i in self.aircrafts:
+        for i in self.showing_aircrafts_info:
             self.__text_view.add_text(f'{i[0]} Осталось {i[1]}с')
 
     def remove(self, id):
-        self.aircrafts.remove([i for i in self.aircrafts if id in i[0]][0])
+        self.showing_aircrafts_info.remove([i for i in self.showing_aircrafts_info if id in i[0]][0])
 
     def tick(self):
         if self.frame % fps == 0:
             d = []
-            for i in range(len(self.aircrafts)):
-                self.aircrafts[i][1] -= 1
-                aircraft = self.controller.get_aicraft(self.aircrafts[i][0].split()[0])
-                if self.aircrafts[i][1] < 0 and aircraft.animation is None:
+            for i in range(len(self.showing_aircrafts_info)):
+                self.showing_aircrafts_info[i][1] -= 1
+                aircraft = self.controller.get_aicraft(self.showing_aircrafts_info[i][0].split()[0])
+                if self.showing_aircrafts_info[i][1] < 0 and aircraft.animation is None:
                     self.controller.fall(aircraft)
                     d.append(i)
             for i in d:
-                del self.aircrafts[i]
+                del self.showing_aircrafts_info[i]
             self.pr()
 
     def refresh(self, screen: Surface):

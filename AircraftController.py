@@ -3,6 +3,7 @@ from Animation.PlaneAnimationLandB import PlaneAnimationLandB
 from Animation.PlaneAnimationTakeOffA import PlaneAnimationTakeOffA
 from Animation.PlaneAnimationTakeOffB import PlaneAnimationTakeOffB
 from Animation.PlaneAnimationFall import PlaneAnimationFall
+from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
 from Sprites.FlyTransport import FlyTransport
 from Sprites.Plane import Plane
@@ -55,3 +56,8 @@ class AircraftController:
         smart_screen.add_sprite(plane)
         self.add_aircraft(plane)
         return plane
+
+    def fill_aircrafts_from_scenario(self, scenario: Scenario, smart_screen: SmartScreen):
+        ids = scenario.get_all_ids_aircrafts()
+        for id in ids:
+            self.add_new_plane(smart_screen, id)

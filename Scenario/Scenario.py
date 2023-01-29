@@ -13,6 +13,9 @@ class Scenario:
     def add_take_off(self, id: str, runWay: chr, time=0, elapsedTime=10):
         self.scenario.append((id, runWay, 'взлёт с полосы', time, elapsedTime))
 
+    def get_all_ids_aircrafts(self) -> list[str]:
+        return [i[0] for i in self.scenario]
+
     def add_weather(self):
         pass
 

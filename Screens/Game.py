@@ -27,14 +27,19 @@ class Game(Screen):
         self.frame_sprite = UIFrameSprite()
 
         self.smart_screen = SmartScreen(surface, pygame.Color("black"))
-        self.smart_screen.add_sprite(self.background_sprite)
 
         self.controller = AircraftController()
+        self.smart_screen.add_sprite(self.background_sprite)
+
+        self.controller.fill_aircrafts_from_scenario(self.scenario, self.smart_screen)
+
         self.smart_screen.add_sprite(self.frame_sprite)
         self.smart_screen.add_sprite(self.clock_sprite)
 
         self.terminalController = TerminalController(self.smart_screen, self.controller)
-        self.commandExecutor = CommandExecutor(self.controller, self.terminalController.input_terminal.text_view)
+        self.commandExecutor = CommandExecutor(self.controller,
+                                               self.terminalController.input_terminal.text_view,
+                                               self.terminalController.output_terminal)
         self.terminalController.input_terminal.command_detect = lambda command: self.commandExecutor.execute(command)
 
     def draw(self):
