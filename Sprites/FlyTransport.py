@@ -42,3 +42,6 @@ class FlyTransport(Transport):
 
     def fall(self):
         self.status = StatusFlyTransport.DEAD
+
+    def fail_take_off(self):
+        self.status = StatusFlyTransport.DEAD
