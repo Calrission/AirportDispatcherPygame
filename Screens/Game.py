@@ -15,8 +15,8 @@ from Scenario.Scenario import Scenario
 
 
 class Game(Screen):
-    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock):
-        super().__init__(0, 0, surface)
+    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event):
+        super().__init__(0, 0, surface, finish_event)
         self.scenario = scenario
         self.clock = clock
 
@@ -39,7 +39,7 @@ class Game(Screen):
         self.terminalController = TerminalController(self.smart_screen, self.controller)
         self.commandExecutor = CommandExecutor(self.controller,
                                                self.terminalController.input_terminal.text_view,
-                                               self.terminalController.output_terminal)
+                                               self.terminalController.output_terminal, finish_game=finish_event)
         self.terminalController.input_terminal.command_detect = lambda command: self.commandExecutor.execute(command)
 
     def draw(self):

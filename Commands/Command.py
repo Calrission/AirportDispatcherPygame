@@ -21,7 +21,7 @@ class Command:
         if len(text) != 0:
             self._params = text.split(" ") if " " in text else [text]
 
-    def execute(self, *args):
+    def execute(self, *args, **kwargs):
         print(f"Hello, I am test command :)\nYour {self._params=}")
 
     @staticmethod
@@ -30,6 +30,10 @@ class Command:
             if i.__class__ == requirement:
                 return i
         return None
+
+    @staticmethod
+    def get_dict_requirement():
+        return ["finish_game"]
 
     @staticmethod
     def get_requirements():
