@@ -68,10 +68,6 @@ class Settings(Menu):
                     self.soundVolume += 0.1
                     self.soundVolume = min(1, self.soundVolume)
 
-            elif e.key == pygame.K_BACKSPACE:
-                self.save(self.save_file)
-                self._callbacks[-1]()
-
             pygame.mixer.music.set_volume(self.musicVolume)
             self.statMusic = self.font.render(str(int(self.musicVolume * 100)), True, (0, 0, 0))
             self.statSound = self.font.render(str(int(self.soundVolume * 100)), True, (0, 0, 0))
