@@ -1,11 +1,11 @@
 import pygame.event
 from pygame import Surface
-from MultiLineText import MultiLineText
+from Terminals.ScrollMultiLineText import ScrollMultiLineText
 
 
 class InputTerminal:
     def __init__(self, x, y, w, h):
-        self.text_view = MultiLineText(x, y, w, h, color="green", size=20, text="> ", font='Fonts/clacon2.ttf', save_len=2, save_index_start=1)
+        self.text_view = ScrollMultiLineText(x, y, w, h, color="green", size=20, text="> ", font='Fonts/clacon2.ttf', save_len=2, save_index_start=1)
         self.active_input = True
         self.rect = pygame.Rect((x, y, w, h))
 

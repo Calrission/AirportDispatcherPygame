@@ -17,7 +17,7 @@ class App:
 
         try:
             if os.path.exists('LastLevel.txt'):
-                with open('LastLEvel.txt', 'rt') as f:
+                with open('LastLevel.txt', 'rt') as f:
                     self.lastLevel = f.read()
             else:
                 with open('LastLevel.txt', 'wt') as f:
@@ -25,10 +25,6 @@ class App:
                     self.lastLevel = 'Scenario/Level-1.scen'
         except Exception as ex:
             print('Ошибка загрузки последнего уровня\n', ex)
-
-
-
-
 
         pygame.init()
         pygame.mixer.music.load('Music/Main.mp3')

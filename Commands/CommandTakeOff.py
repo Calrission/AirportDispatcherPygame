@@ -1,8 +1,8 @@
 from Screens.Game import AircraftController
 from Commands.Command import Command
-from MultiLineText import MultiLineText
 from Terminals.AircraftsTerminal import AircraftsTerminal
 from Sprites.FlyTransport import StatusFlyTransport
+from Terminals.ScrollMultiLineText import ScrollMultiLineText
 
 
 class CommandTakeOff(Command):
@@ -20,11 +20,11 @@ class CommandTakeOff(Command):
 
     @staticmethod
     def get_requirements():
-        return [AircraftController, MultiLineText, AircraftsTerminal]
+        return [AircraftController, ScrollMultiLineText, AircraftsTerminal]
 
     def execute(self, *args):
         controller: AircraftController = self._get_requirement(AircraftController, args)
-        out: MultiLineText = self._get_requirement(MultiLineText, args)
+        out: ScrollMultiLineText = self._get_requirement(ScrollMultiLineText, args)
         terminal: AircraftsTerminal = self._get_requirement(AircraftsTerminal, args)
         try:
             id = self._params[0]

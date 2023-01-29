@@ -13,6 +13,7 @@ class MultiLineText:
         self.font = pygame.font.Font(font, self.size)
         self.save_len = save_len
         self.save_index = save_index_start
+        self.margin = 10
 
     def change_text(self, text: str):
         if "\n" in text:
@@ -54,7 +55,7 @@ class MultiLineText:
         return self.text_lines[-1]
 
     def refresh(self, screen: Surface):
-        self.__render_multi_line(screen)
+        self._render_multi_line(screen)
 
     def clear(self):
         self.text_lines = []
@@ -62,14 +63,21 @@ class MultiLineText:
     def __create_text_surface(self, text: str):
         return self.font.render(text, True, self.color)
 
-    def __render_multi_line(self, screen: Surface):
+    def _render_multi_line(self, screen: Surface):
+        surfaces = self._generate_surface_all_text()
+        for i, s in enumerate(surfaces):
+            self._render_surface(s, screen, i)
+
+    def _render_surface(self, surface: Surface, screen: Surface, i):
+        rect = surface.get_rect()
+        height_text, width_text = rect.height, rect.width
+        screen.blit(surface, (self.x, self.y + (height_text + self.margin) * i))
+
+    def _generate_surface_all_text(self) -> list[Surface]:
         surfaces = []
         for i in self.text_lines:
             surfaces += self.__generate_line_surfaces(i)
-        for i, s in enumerate(surfaces):
-            rect = s.get_rect()
-            height_text, width_text = rect.height, rect.width
-            screen.blit(s, (self.x, self.y + (height_text + 10) * i))
+        return surfaces
 
     def __generate_line_surfaces(self, line: str) -> list[Surface]:
         surfaces = []
