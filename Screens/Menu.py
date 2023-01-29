@@ -40,6 +40,8 @@ class Menu(Screen):
                 self.switch(1)
             elif e.key == pygame.K_SPACE or e.key == pygame.K_RETURN:
                 self.select()
+            elif e.key == pygame.K_BACKSPACE:
+                self._callbacks[-1]()
 
 
 

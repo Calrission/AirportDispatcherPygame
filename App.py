@@ -10,20 +10,25 @@ from Screens.Menu import Menu
 from Screens.Settings import Settings
 from Screens.Levels import Levels
 from Screens.AboutAs import AboutAs
+from Saves.ScoreSaver import ScoreSaver
 
 
 class App:
     def __init__(self):
+        lastLevel_path = 'Saves/LastLevel.txt'
         try:
-            if os.path.exists('LastLevel.txt'):
-                with open('LastLevel.txt', 'rt') as f:
+            if os.path.exists(lastLevel_path):
+                with open(lastLevel_path, 'rt') as f:
                     self.lastLevel = f.read()
             else:
-                with open('LastLevel.txt', 'wt') as f:
+                with open(lastLevel_path, 'wt') as f:
                     f.write('Scenario/Level-1.scen')
                     self.lastLevel = 'Scenario/Level-1.scen'
         except Exception as ex:
             print('Ошибка загрузки последнего уровня\n', ex)
+
+
+
 
         pygame.init()
         pygame.mixer.music.load('Music/Main.mp3')
@@ -40,11 +45,12 @@ class App:
         self.clock = pygame.time.Clock()
 
         self.scenario = Scenario()
+        scores = ScoreSaver('Saves/Score.set')
 
         self.menu = Menu(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png')
-        self.levels = Levels(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png')
+        self.levels = Levels(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', scores)
         self.aboutAs = AboutAs(80, screen_height // 2, 100, self.surface, 'Sprites/Menu/Level_background.png')
-        self.settings = Settings(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', 'Settings.set')
+        self.settings = Settings(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', 'Saves/Settings.set')
 
         self.now_screen: Screen = self.menu
 
