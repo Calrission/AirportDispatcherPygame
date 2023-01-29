@@ -83,4 +83,16 @@ class AircraftController:
 
     def check_empty_way(self, way: str):
         way = way.upper()
+        self.refresh_way_a()
+        self.refresh_way_b()
         return (way == 'A' and self.way_A is None) or (way == "B" and self.way_B is None)
+
+    def refresh_way_a(self):
+        if self.way_A is not None:
+            if isinstance(self.way_A, Plane):
+                self.way_A = None if self.way_A.is_already_animate and self.way_A.animation is None else self.way_A
+
+    def refresh_way_b(self):
+        if self.way_B is not None:
+            if isinstance(self.way_B, Plane):
+                self.way_B = None if self.way_B.is_already_animate and self.way_B.animation is None else self.way_B

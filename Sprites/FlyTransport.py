@@ -19,6 +19,7 @@ class FlyTransport(Transport):
         self.landTime = landTime
         self.takeOffTime = takeOffTime
         self.animation: MultiSpriteAnimation = None
+        self.is_already_animate = False
         self.velocity = [0, 0]
         self.ID = ID
 
@@ -29,8 +30,12 @@ class FlyTransport(Transport):
         self.status = StatusFlyTransport.GROUND
 
     def update(self):
-        if self.animation is not None:
+        if self.animation is not None and self.animation.is_play:
+            if not self.is_already_animate:
+                self.is_already_animate = True
             self.animation.tick()
+        else:
+            self.animation = None
 
     def addRound(self):
         pass
