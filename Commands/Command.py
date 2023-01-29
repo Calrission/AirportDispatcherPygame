@@ -33,7 +33,7 @@ class Command:
 
     @staticmethod
     def get_dict_requirement():
-        return ["finish_game"]
+        return []
 
     @staticmethod
     def get_requirements():

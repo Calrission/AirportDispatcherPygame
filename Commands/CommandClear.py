@@ -1,5 +1,5 @@
 from Commands.Command import Command
-from MultiLineText import MultiLineText
+from Terminals.ScrollMultiLineText import ScrollMultiLineText
 
 
 class CommandClear(Command):
@@ -17,8 +17,8 @@ class CommandClear(Command):
 
     @staticmethod
     def get_requirements():
-        return [MultiLineText]
+        return [ScrollMultiLineText]
 
     def execute(self, *args):
-        out: MultiLineText = self._get_requirement(MultiLineText, args)
+        out: ScrollMultiLineText = self._get_requirement(ScrollMultiLineText, args)
         out.clear()

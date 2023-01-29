@@ -1,5 +1,5 @@
 from Commands.Command import Command
-from MultiLineText import MultiLineText
+from Terminals.ScrollMultiLineText import ScrollMultiLineText
 from commands import commands
 
 
@@ -18,8 +18,8 @@ class CommandHelp(Command):
 
     @staticmethod
     def get_requirements():
-        return [MultiLineText]
+        return [ScrollMultiLineText]
 
     def execute(self, *args):
-        out: MultiLineText = self._get_requirement(MultiLineText, args)
-        out.add_all_text([f"{i.get_signature()} - {i.get_description()}" for i in commands])
+        out: ScrollMultiLineText = self._get_requirement(ScrollMultiLineText, args)
+        out.add_all_text([f"\"{i.get_signature()}\" - {i.get_description()}" for i in commands])
