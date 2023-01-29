@@ -1,8 +1,7 @@
-from Commands.Command import Command
+from Commands.CommandTakeOff import CommandTakeOff
 from Commands.CommandLand import CommandLand
-from Commands.CommandPrint import CommandPrint
 
 commands = [
-    CommandLand
+    CommandLand, CommandTakeOff
 ]
 prefix_commands = {i.get_command_prefix(): i for i in commands}
