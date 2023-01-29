@@ -52,6 +52,9 @@ class MultiLineText:
     def refresh(self, screen: Surface):
         self.__render_multi_line(screen)
 
+    def clear(self):
+        self.text_lines = []
+
     def __create_text_surface(self, text: str):
         return self.font.render(text, True, self.color)
 
