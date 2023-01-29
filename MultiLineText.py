@@ -3,7 +3,7 @@ from pygame import Surface
 
 
 class MultiLineText:
-    def __init__(self, x, y, w, h, color="white", size=24, font=pygame.font.get_default_font(), text=""):
+    def __init__(self, x, y, w, h, color="white", size=24, font=pygame.font.get_default_font(), text="", save_len=-1, save_index_start=None):
         self.x, self.y, self.w, self.h = x, y, w, h
         self.size = size
         self.color = color
@@ -11,6 +11,8 @@ class MultiLineText:
         if len(text) != 0:
             self.text_lines.append(text)
         self.font = pygame.font.Font(font, self.size)
+        self.save_len = save_len
+        self.save_index = save_index_start
 
     def change_text(self, text: str):
         if "\n" in text:
@@ -32,13 +34,15 @@ class MultiLineText:
         return index_new_last
 
     def remove_last(self):
-        self.text_lines[-1] = self.text_lines[-1][:-1]
+        if len(self.text_lines[-1]) > self.save_len:
+            self.text_lines[-1] = self.text_lines[-1][:-1]
 
     def insert_last(self, text, index):
         self.text_lines[-1] = self.text_lines[-1][:index] + text + self.text_lines[-1][index:]
 
     def remove_last_index(self, start, end):
-        self.text_lines[-1] = self.text_lines[-1].replace(self.get_from_last_index(start, end), "")
+        if start > self.save_index:
+            self.text_lines[-1] = self.text_lines[-1].replace(self.get_from_last_index(start, end), "")
 
     def get_from_last_index(self, start, end):
         return self.text_lines[-1][start:end]
