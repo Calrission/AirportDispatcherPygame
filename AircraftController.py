@@ -12,6 +12,8 @@ from Sprites.Plane import Plane
 class AircraftController:
     def __init__(self):
         self.aircrafts = []
+        self.way_A = None
+        self.way_B = None
 
     def add_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.append(aircraft)
@@ -31,8 +33,10 @@ class AircraftController:
 
         if runWay == 'A':
             aircraft.animation = PlaneAnimationLandA(aircraft)
+            self.way_A = aircraft
         elif runWay == 'B':
             aircraft.animation = PlaneAnimationLandB(aircraft)
+            self.way_B = aircraft
 
         aircraft.landing()
 
@@ -65,3 +69,7 @@ class AircraftController:
         ids = scenario.get_all_init_info_aircrafts()
         for id, status in ids:
             self.add_new_plane(smart_screen, id, status)
+
+    def check_empty_way(self, way: str):
+        way = way.upper()
+        return (way == 'A' and self.way_A is None) or (way == "B" and self.way_B is None)

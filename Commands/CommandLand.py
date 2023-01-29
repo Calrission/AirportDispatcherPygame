@@ -32,6 +32,9 @@ class CommandLand(Command):
             if way not in ["A", "B"]:
                 out.add_text("Только полосы A и B")
                 return
+            if not controller.check_empty_way(way):
+                out.add_text(f"Полоса {way} занята")
+                return
             aircraft = controller.get_aicraft(id)
             if aircraft is None:
                 out.add_text(f"Самолет с ID={id} не найден")
