@@ -51,5 +51,7 @@ class Game(Screen):
         self.terminalController.tick_scenario(self.scenario)
         self.terminalController.tick()
 
+        self.controller.tick_check_collision()
+
     def parse_event(self, event):
         self.terminalController.parse_event(event)

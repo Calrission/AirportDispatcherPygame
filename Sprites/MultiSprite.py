@@ -5,7 +5,6 @@ import pygame
 
 class MultiSprite(Sprite):
     def __init__(self, x: int, y: int, images: list, size=[0, 0]):
-        super().__init__(x, y)
         self.sprites = []
         for i in images:
             a = []
@@ -19,10 +18,12 @@ class MultiSprite(Sprite):
         else:
             self.size = size
 
+        super().__init__(x, y, *self.size)
 
     def changeSprite(self, img: str):
-        self.sprite.current_img  = self.sprites[self.sprites.index(img)]
+        self.sprite.current_img = self.sprites[self.sprites.index(img)]
         self.size = self.current_img.get_size()
+        self.rect = pygame.Rect(self.x, self.y, *self.size)
 
     def draw(self, screen: Surface):
         screen.blit(self.current_img, (self.x, self.y))

@@ -22,6 +22,8 @@ class AircraftController:
         self.fall_price = -50
         self.fail_take_off_price = -50
 
+        self.check_collision: list[tuple[FlyTransport, FlyTransport]] = []
+
     def add_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.append(aircraft)
 
@@ -55,8 +57,12 @@ class AircraftController:
 
         if runWay == 'A':
             aircraft.animation = PlaneAnimationTakeOffA(aircraft)
+            if self.way_A is not None:
+                self.check_collision.append((self.way_A, aircraft))
         elif runWay == 'B':
             aircraft.animation = PlaneAnimationTakeOffB(aircraft)
+            if self.way_B is not None:
+                self.check_collision.append((self.way_B, aircraft))
 
         aircraft.takeOff()
         self.score += self.take_off_price
@@ -78,6 +84,9 @@ class AircraftController:
         aircraft.fail_take_off()
 
         self.score += self.fail_take_off_price
+
+    def boom(self, first: FlyTransport, second: FlyTransport):
+        print("BOOOOOOOOM !")
 
     def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
         plane = Plane.get_instance(0, 0, Plane_ID, status)
@@ -106,3 +115,8 @@ class AircraftController:
         if self.way_B is not None:
             if isinstance(self.way_B, Plane):
                 self.way_B = None if self.way_B.is_already_animate and self.way_B.animation is None else self.way_B
+
+    def tick_check_collision(self):
+        for first, second in self.check_collision:
+            if first.check_collision(second.rect):
+                self.boom(first, second)
