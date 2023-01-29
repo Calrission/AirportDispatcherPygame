@@ -15,13 +15,19 @@ class AircraftController:
         self.way_A = None
         self.way_B = None
 
+        self.count = 0
+        self.land_plane_price = 50
+        self.take_off_price = 50
+        self.fall_price = -50
+        self.fail_take_off = -50
+
     def add_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.append(aircraft)
 
     def remove_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.remove(aircraft)
 
-    def get_aicraft(self, ID: str) -> FlyTransport:
+    def get_aircraft(self, ID: str) -> FlyTransport:
         for i in self.aircrafts:
             if i.ID == ID:
                 return i
@@ -39,6 +45,7 @@ class AircraftController:
             self.way_B = aircraft
 
         aircraft.landing()
+        self.count += self.land_plane_price
 
     def take_off(self, aircraft: FlyTransport, runWay: chr):
         aircraft.show = True
@@ -51,12 +58,16 @@ class AircraftController:
             aircraft.animation = PlaneAnimationTakeOffB(aircraft)
 
         aircraft.takeOff()
+        self.count += self.take_off_price
 
     def fall(self, aircraft: FlyTransport):
         aircraft.show = True
         if aircraft not in self.aircrafts:
             raise ValueError("aircraft not exist in controller")
         aircraft.animation = PlaneAnimationFall(aircraft)
+        aircraft.fall()
+
+        self.count += self.fall_price
 
     def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
         plane = Plane.get_instance(0, 0, Plane_ID, status)

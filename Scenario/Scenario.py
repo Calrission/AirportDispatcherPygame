@@ -22,6 +22,7 @@ class Scenario:
         pass
 
     def load(self, file):
+        self.time = 0
         try:
             with open(file, 'rb') as f:
                 self.scenario = pickle.load(f)

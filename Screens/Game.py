@@ -1,6 +1,5 @@
 import pygame
 from pygame.time import Clock
-
 from AircraftController import AircraftController
 from Commands.CommandExecutor import CommandExecutor
 from GameClock import GameClock
