@@ -14,7 +14,6 @@ from Screens.AboutAs import AboutAs
 
 class App:
     def __init__(self):
-
         try:
             if os.path.exists('LastLevel.txt'):
                 with open('LastLevel.txt', 'rt') as f:
@@ -49,7 +48,7 @@ class App:
 
         self.now_screen: Screen = self.menu
 
-        self.menu.append_option("Отладка: Старт", lambda: self.change_screen(
+        self.menu.append_option("Старт", lambda: self.change_screen(
             Game(self.surface, self.load_level("Scenario/debagScenario.scen"), self.clock, self.finish_game)))
         self.menu.append_option("Продолжить", lambda: self.change_screen(
             Game(self.surface, self.load_level(self.lastLevel), self.clock, self.finish_game)))

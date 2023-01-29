@@ -14,7 +14,15 @@ sct.save('debagScenario.scen')
 
 sc1 = Scenario()
 
-sc1.add_land('Level-1', 'A', 1 * fps, 999)
+# sc1.add_land('Level-1', 'A', 1 * fps, 999)
+
+sc1.add_land('01', 'A', 3 * fps, 10)
+sc1.add_land('02', 'B', 4 * fps, 10)
+sc1.add_take_off('03', 'A', 11 * fps, 16)
+sc1.add_land('04', 'B', 14 * fps, 16)
+sc1.add_land('05', 'A', 20 * fps, 12)
+sc1.add_take_off('06', 'B', 22 * fps, 12)
+sc1.add_take_off('07', 'A', 31 * fps, 12)
 
 sc1.save('Level-1.scen')
 
