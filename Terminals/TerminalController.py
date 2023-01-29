@@ -21,10 +21,10 @@ class TerminalController:
     def tick_scenario(self, scenario: Scenario):
         scenario.time += 1
         if scenario.time % 10 == 0:
-            for id, runWay, t, time, elapsedTime in scenario.scenario:
+            for id, runWay, t, time, elapsedTime, status in scenario.scenario:
                 if scenario.time >= time:
                     self.output_terminal.add_aircraft(f'{id} запрашивает {t} {runWay}.', elapsedTime)
-                    scenario.scenario.remove((id, runWay, t, time, elapsedTime))
+                    scenario.scenario.remove((id, runWay, t, time, elapsedTime, status))
 
     def parse_event(self, event):
         self.input_terminal.parse_event(event)

@@ -1,5 +1,6 @@
 from pygame import Surface
 from MultiLineText import MultiLineText
+from Sprites.FlyTransport import StatusFlyTransport
 from const import fps
 from AircraftController import AircraftController
 import sys
@@ -14,9 +15,9 @@ class AircraftsTerminal:
 
     def add_aircraft(self, aircraft: str, time: int):
         self.showing_aircrafts_info.append([aircraft, time])
-        self.pr()
+        self.refresh_text()
 
-    def pr(self):
+    def refresh_text(self):
         self.__text_view.change_text('')
         for i in self.showing_aircrafts_info:
             self.__text_view.add_text(f'{i[0]} Осталось {i[1]}с')
@@ -26,16 +27,17 @@ class AircraftsTerminal:
 
     def tick(self):
         if self.frame % fps == 0:
-            d = []
+            deads = []
             for i in range(len(self.showing_aircrafts_info)):
                 self.showing_aircrafts_info[i][1] -= 1
                 aircraft = self.controller.get_aicraft(self.showing_aircrafts_info[i][0].split()[0])
                 if self.showing_aircrafts_info[i][1] < 0 and aircraft.animation is None:
-                    self.controller.fall(aircraft)
-                    d.append(i)
-            for i in d:
+                    if aircraft.status == StatusFlyTransport.FLY:
+                        self.controller.fall(aircraft)
+                    deads.append(i)
+            for i in deads:
                 del self.showing_aircrafts_info[i]
-            self.pr()
+            self.refresh_text()
 
     def refresh(self, screen: Surface):
         self.__text_view.refresh(screen)

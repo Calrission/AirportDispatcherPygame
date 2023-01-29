@@ -16,7 +16,7 @@ class Scenario:
         self.scenario.append((id, runWay, 'взлёт с полосы', time, elapsedTime, StatusFlyTransport.GROUND))
 
     def get_all_init_info_aircrafts(self) -> list[tuple[str, StatusFlyTransport]]:
-        return [(i[0], i[4]) for i in self.scenario]
+        return [(i[0], i[5]) for i in self.scenario]
 
     def add_weather(self):
         pass
