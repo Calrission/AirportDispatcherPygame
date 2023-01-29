@@ -7,7 +7,7 @@ import sys
 
 class AircraftsTerminal:
     def __init__(self, x, y, w, h, controller: AircraftController):
-        self.__text_view = MultiLineText(x, y, w, h, color="green", size=16)
+        self.__text_view = MultiLineText(x, y, w, h, color="green", size=20, font='Fonts/clacon2.ttf')
         self.aircrafts = []  # (text, elapsed_time)
         self.frame = 0
         self.controller = controller

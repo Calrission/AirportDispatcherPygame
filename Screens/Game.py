@@ -30,17 +30,11 @@ class Game(Screen):
         self.smart_screen.add_sprite(self.background_sprite)
 
         self.controller = AircraftController()
-
-        for id, *args in scenario.scenario:
-            self.controller.add_new_plane(self.smart_screen, id)
-
         self.smart_screen.add_sprite(self.frame_sprite)
         self.smart_screen.add_sprite(self.clock_sprite)
 
         self.terminalController = TerminalController(self.smart_screen, self.controller)
-        self.commandExecutor = CommandExecutor(self.controller,
-                                               self.terminalController.input_terminal.text_view,
-                                               self.terminalController.output_terminal)
+        self.commandExecutor = CommandExecutor(self.controller, self.terminalController.input_terminal.text_view)
         self.terminalController.input_terminal.command_detect = lambda command: self.commandExecutor.execute(command)
 
     def draw(self):
@@ -50,16 +44,8 @@ class Game(Screen):
         self.smart_screen.refresh()
 
         self.terminalController.refresh()
-        self.tick_scenario()
+        self.terminalController.tick_scenario(self.scenario)
         self.terminalController.tick()
-
-    def tick_scenario(self):
-        self.scenario.time += 1
-        if self.scenario.time % 10 == 0:
-            for id, runWay, t, time in self.scenario.scenario:
-                if self.scenario.time >= time:
-                    self.terminalController.output_terminal.add_aircraft(f'{id} запрашивает {t.value} {runWay}.', 10)
-                    self.scenario.scenario.remove((id, runWay, t, time))
 
     def parse_event(self, event):
         self.terminalController.parse_event(event)

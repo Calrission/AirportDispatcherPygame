@@ -5,7 +5,7 @@ from MultiLineText import MultiLineText
 
 class InputTerminal:
     def __init__(self, x, y, w, h):
-        self.text_view = MultiLineText(x, y, w, h, color="green", size=16, text="> ")
+        self.text_view = MultiLineText(x, y, w, h, color="green", size=20, text="> ", font='Fonts/clacon2.ttf')
         self.active_input = True
         self.rect = pygame.Rect((x, y, w, h))
 
