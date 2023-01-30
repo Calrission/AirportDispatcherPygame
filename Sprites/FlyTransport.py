@@ -30,10 +30,11 @@ class FlyTransport(Transport):
         self.status = StatusFlyTransport.GROUND
 
     def update(self):
-        if self.animation is not None and self.animation.is_finish:
-            self.is_finish = True
-        if self.animation is not None and self.animation.is_play:
-            self.animation.tick()
+        if self.animation is not None and not self.is_finish:
+            if self.animation.is_finish:
+                self.is_finish = True
+            elif self.animation.is_play:
+                self.animation.tick()
 
     def addRound(self):
         pass

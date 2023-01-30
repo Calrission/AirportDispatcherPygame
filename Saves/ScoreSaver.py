@@ -2,6 +2,7 @@ from Saves.Saver import Saver
 import os
 import pickle
 
+
 class ScoreSaver(Saver):
     def __init__(self, path: str):
         super().__init__(path)
