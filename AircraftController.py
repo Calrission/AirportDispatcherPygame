@@ -1,3 +1,5 @@
+import pygame
+
 from Animation.FailTakeOffAnimation import FailTakeOffAnimation
 from Animation.PlaneAnimationLandA import PlaneAnimationLandA
 from Animation.PlaneAnimationLandB import PlaneAnimationLandB
@@ -101,6 +103,8 @@ class AircraftController:
             self.off_all_sound()
             self.sound.play("Music/Boom.wav")
             self._is_boom = True
+        first.current_img = pygame.transform.scale(first.sprites[2][0], first.size)
+        second.current_img = pygame.transform.scale(first.sprites[2][0], first.size)
         first.animation.is_play = False
         second.animation.is_play = False
         self.score += self.crush_price
