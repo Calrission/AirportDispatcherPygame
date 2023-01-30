@@ -59,18 +59,18 @@ class App:
         self.now_screen: Screen = self.menu
 
         self.menu.append_option("Старт", lambda: self.change_screen(
-            Game(self.surface, self.load_level(self.lastLevel), self.clock, self.finish_game, scores, self.sound_Controller)))
+            Game(self.surface, self.load_level(self.lastLevel), self.clock, self.finish_game, scores, self.sound_Controller, self.lastLevel)))
         self.menu.append_option('Уровни', lambda: self.change_screen(self.levels))
         self.menu.append_option('Настройки', lambda: self.change_screen(self.settings))
         self.menu.append_option('О программе', lambda: self.change_screen(self.aboutAs))
         self.menu.append_option('Выход', lambda: sys.exit())
 
         self.levels.append_option('Уровень-1', lambda: self.change_screen(
-            Game(self.surface, self.load_level('Scenario/Level-1.scen'), self.clock, self.finish_game, scores, self.sound_Controller)))
+            Game(self.surface, self.load_level('Scenario/Level-1.scen'), self.clock, self.finish_game, scores, self.sound_Controller, self.lastLevel)))
         self.levels.append_option('Уровень-2', lambda: self.change_screen(
-            Game(self.surface, self.load_level('Scenario/Level-2.scen'), self.clock, self.finish_game, scores, self.sound_Controller)))
+            Game(self.surface, self.load_level('Scenario/Level-2.scen'), self.clock, self.finish_game, scores, self.sound_Controller, self.lastLevel)))
         self.levels.append_option('Уровень-3', lambda: self.change_screen(
-            Game(self.surface, self.load_level('Scenario/Level-3.scen'), self.clock, self.finish_game, scores, self.sound_Controller)))
+            Game(self.surface, self.load_level('Scenario/Level-3.scen'), self.clock, self.finish_game, scores, self.sound_Controller, self.lastLevel)))
         self.levels.append_option('Вернуться', lambda: self.change_screen(self.menu))
 
         self.settings.append_option('Громкость музыки:', lambda: self.change_screen(self.settings))

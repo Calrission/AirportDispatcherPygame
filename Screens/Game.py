@@ -16,12 +16,13 @@ from Scenario.Scenario import Scenario
 
 
 class Game(Screen):
-    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event, score: ScoreSaver, sound: SoundController):
+    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event, score: ScoreSaver, sound: SoundController, lastLevel: str):
         super().__init__(0, 0, surface, finish_event)
         self.scenario = scenario
         self.clock = clock
         self.score_saver = score
         self.sound = sound
+        self.lastLevel = lastLevel
 
         self.game_clock = GameClock()
 
@@ -63,4 +64,12 @@ class Game(Screen):
 
     def finish_game(self, score: int):
         self.score_saver.save(self.scenario.name, str(score))
+
+        try:
+            with open('Saves/LastLevel.txt', 'wt') as f:
+                f.write(self.scenario.name)
+                self.lastLevel = self.scenario.name
+        except Exception as ex:
+            print('Не удалось сохранить LastLevel', ex)
+
         self.finish_event()

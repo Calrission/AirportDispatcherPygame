@@ -33,7 +33,7 @@ class AircraftsTerminal:
                 self.showing_aircrafts_info[i][1] -= 1
                 aircraft = self.controller.get_aircraft(self.showing_aircrafts_info[i][0].split()[0])
                 if aircraft is not None:
-                    if self.showing_aircrafts_info[i][1] < 0 and aircraft.animation is None:
+                    if self.showing_aircrafts_info[i][1] < 0:
                         if aircraft.status == StatusFlyTransport.FLY:
                             self.controller.fall(aircraft)
                         elif aircraft.status == StatusFlyTransport.GROUND:
