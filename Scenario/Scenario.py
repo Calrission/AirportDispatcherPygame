@@ -6,6 +6,7 @@ from Sprites.FlyTransport import StatusFlyTransport
 class Scenario:
     def __init__(self):
         super().__init__()
+        self.name = ""
         self.time = 0
         self.scenario = []  # (id, runWay, type, time, elapsed_time, status)
 
@@ -22,6 +23,7 @@ class Scenario:
         pass
 
     def load(self, file):
+        self.name = file
         self.time = 0
         try:
             with open(file, 'rb') as f:

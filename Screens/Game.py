@@ -3,6 +3,7 @@ from pygame.time import Clock
 from AircraftController import AircraftController
 from Commands.CommandExecutor import CommandExecutor
 from GameClock import GameClock
+from Saves.ScoreSaver import ScoreSaver
 from Screens.Screen import Screen
 from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
@@ -14,10 +15,11 @@ from Scenario.Scenario import Scenario
 
 
 class Game(Screen):
-    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event):
+    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event, score: ScoreSaver):
         super().__init__(0, 0, surface, finish_event)
         self.scenario = scenario
         self.clock = clock
+        self.score_saver = score
 
         self.game_clock = GameClock()
 
@@ -28,6 +30,7 @@ class Game(Screen):
         self.smart_screen = SmartScreen(surface, pygame.Color("black"))
 
         self.controller = AircraftController()
+        self.controller.finish_game = self.finish_game
         self.smart_screen.add_sprite(self.background_sprite)
 
         self.controller.fill_aircrafts_from_scenario(self.scenario, self.smart_screen)
@@ -55,3 +58,7 @@ class Game(Screen):
 
     def parse_event(self, event):
         self.terminalController.parse_event(event)
+
+    def finish_game(self, score: int):
+        self.score_saver.save(self.scenario.name, str(score))
+        self.finish_event()

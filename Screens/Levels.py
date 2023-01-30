@@ -11,7 +11,6 @@ class Levels(Menu):
         for i in scores.data.values():
             self.scores.append(self.font.render(str(i), True, (0, 0, 0)))
 
-
     def draw(self):
         self.surface.blit(self.background, (0, 0))
         for i, option in enumerate(self._option_surfaces):
@@ -25,5 +24,3 @@ class Levels(Menu):
             rect = item.get_rect()
             rect.topleft = (self.x + 400, self.y + i * self.padding)
             self.surface.blit(item, rect)
-
-

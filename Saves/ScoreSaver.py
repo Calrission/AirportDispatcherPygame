@@ -7,9 +7,9 @@ class ScoreSaver(Saver):
         super().__init__(path)
 
         self.data = {
-            'Level-1': 0,
-            'Level-2': 0,
-            'Level-3': 0,
+            'Scenario/Level-1.scen': 0,
+            'Scenario/Level-2.scen': 0,
+            'Scenario/Level-3.scen': 0,
         }
 
         try:

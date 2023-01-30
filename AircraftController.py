@@ -22,6 +22,8 @@ class AircraftController:
         self.fall_price = -50
         self.fail_take_off_price = -50
 
+        self.finish_game = None
+
         self.check_collision: list[tuple[FlyTransport, FlyTransport]] = []
 
     def add_aircraft(self, aircraft: FlyTransport):
@@ -124,3 +126,6 @@ class AircraftController:
         for first, second in self.check_collision:
             if first.check_collision(second.rect):
                 self.boom(first, second)
+        if len(self.aircrafts) == 0:
+            if self.finish_game is not None:
+                self.finish_game(self.score)

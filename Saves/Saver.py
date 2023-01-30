@@ -7,11 +7,10 @@ class Saver:
         self.path = path
         self.data = {}
 
-
     def load(self):
         try:
             with open(self.path, 'rb') as f:
-                data = pickle.load(f)
+                self.data = pickle.load(f)
         except Exception as ex:
             print('Saver-load:', ex)
 
