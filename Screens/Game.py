@@ -31,7 +31,7 @@ class Game(Screen):
 
         self.smart_screen = SmartScreen(surface, pygame.Color("black"))
 
-        self.controller = AircraftController()
+        self.controller = AircraftController(self.sound)
         self.controller.finish_game = self.finish_game
         self.smart_screen.add_sprite(self.background_sprite)
 

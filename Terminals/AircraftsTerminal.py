@@ -1,5 +1,6 @@
 from pygame import Surface
 from MultiLineText import MultiLineText
+from SoundController import SoundController
 from Sprites.FlyTransport import StatusFlyTransport
 from const import fps
 from AircraftController import AircraftController

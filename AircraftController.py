@@ -6,13 +6,14 @@ from Animation.PlaneAnimationTakeOffB import PlaneAnimationTakeOffB
 from Animation.PlaneAnimationFall import PlaneAnimationFall
 from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
+from SoundController import SoundController
 from Sprites.FlyTransport import *
 from Sprites.Plane import Plane
 from const import fps
 
 
 class AircraftController:
-    def __init__(self):
+    def __init__(self, sound: SoundController):
         self.aircrafts: list[FlyTransport] = []
         self.way_A = None
         self.way_B = None
@@ -29,6 +30,8 @@ class AircraftController:
         self._is_boom = False
         self._time_after_booom = fps * 3
         self._time = 0
+
+        self.sound = sound
 
     def add_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.append(aircraft)
@@ -54,6 +57,7 @@ class AircraftController:
             self.way_B = aircraft
 
         aircraft.landing()
+        self.sound.play('Music/land.wav')
         self.score += self.land_plane_price
 
     def take_off(self, aircraft: FlyTransport, runWay: chr):
@@ -71,6 +75,7 @@ class AircraftController:
                 self.check_collision.append((self.way_B, aircraft))
 
         aircraft.takeOff()
+        self.sound.play('Music/land.wav')
         self.score += self.take_off_price
 
     def fall(self, aircraft: FlyTransport):

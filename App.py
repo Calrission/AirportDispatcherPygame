@@ -34,6 +34,7 @@ class App:
 
         self.sound_Controller = SoundController()
         self.sound_Controller.add_sound('Music/Button.wav')
+        self.sound_Controller.add_sound('Music/land.wav')
         pygame.font.init()
         pygame.display.set_caption('Диспетчер')
 
