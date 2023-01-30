@@ -32,12 +32,13 @@ class AircraftsTerminal:
             for i in range(len(self.showing_aircrafts_info)):
                 self.showing_aircrafts_info[i][1] -= 1
                 aircraft = self.controller.get_aircraft(self.showing_aircrafts_info[i][0].split()[0])
-                if self.showing_aircrafts_info[i][1] < 0 and aircraft.animation is None:
-                    if aircraft.status == StatusFlyTransport.FLY:
-                        self.controller.fall(aircraft)
-                    elif aircraft.status == StatusFlyTransport.GROUND:
-                        self.controller.fail_take_off(aircraft)
-                    deads.append(i)
+                if aircraft is not None:
+                    if self.showing_aircrafts_info[i][1] < 0 and aircraft.animation is None:
+                        if aircraft.status == StatusFlyTransport.FLY:
+                            self.controller.fall(aircraft)
+                        elif aircraft.status == StatusFlyTransport.GROUND:
+                            self.controller.fail_take_off(aircraft)
+                        deads.append(i)
             for i in deads:
                 del self.showing_aircrafts_info[i]
             self.refresh_text()

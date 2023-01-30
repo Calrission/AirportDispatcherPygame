@@ -85,7 +85,7 @@ class AircraftController:
         aircraft.show = True
         if aircraft not in self.aircrafts:
             raise ValueError("aircraft not exist in controller")
-        aircraft.animation = PlaneAnimationFall(aircraft)
+        aircraft.animation = PlaneAnimationFall(aircraft, lambda x: self.sound.play("Music/Boom.wav"))
         aircraft.fall()
 
         self.score += self.fall_price

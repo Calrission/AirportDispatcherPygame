@@ -5,8 +5,8 @@ from const import fps
 
 
 class PlaneAnimationFall(PlaneAnimation):
-    def __init__(self, plane):
-        super().__init__(plane)
+    def __init__(self, plane, on_finish_animation):
+        super().__init__(plane, on_finish_animation)
         self.velocity = [-5.0, 0.0]
 
     def animate(self):
@@ -41,3 +41,8 @@ class PlaneAnimationFall(PlaneAnimation):
             self.frame = 0
             self.sprite.size = [0, 0]
             self.sprite.current_img = pygame.transform.scale(self.sprite.sprites[2][0], self.sprite.size)
+
+    def tick_callback(self):
+        if self.frame == 160 and not self.is_already_callback:
+            self.callback()
+
