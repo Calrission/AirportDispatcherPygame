@@ -21,3 +21,10 @@ class ScoreSaver(Saver):
                 self.load()
         except Exception as ex:
             print('ScoreSaver:', ex)
+
+    def save(self, key: str, item: str):
+        if key in self.data:
+            old_value = int(self.data[key])
+            if int(item) > old_value:
+                super().save(key, item)
+

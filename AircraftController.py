@@ -23,6 +23,7 @@ class AircraftController:
         self.take_off_price = 50
         self.fall_price = -50
         self.fail_take_off_price = -50
+        self.crush_price = -100
 
         self.finish_game = None
 
@@ -99,6 +100,7 @@ class AircraftController:
         self._is_boom = True
         first.animation.is_play = False
         second.animation.is_play = False
+        self.score += self.crush_price
 
     def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
         plane = Plane.get_instance(0, 0, Plane_ID, status)
@@ -130,7 +132,7 @@ class AircraftController:
 
     def tick_check_collision(self):
         for i in self.aircrafts:
-            if i.is_finish:
+            if i.animation is not None and i.animation.is_finish:
                 self.remove_aircraft(i)
         for first, second in self.check_collision:
             if first.check_collision(second.get_rect()):
@@ -138,7 +140,12 @@ class AircraftController:
         if self._is_boom:
             self._time += 1
         if self._time >= self._time_after_booom:
-            self.finish_game(self.score)
+            self.off_all_sound()
+            self.finish_game(0)
         if len(self.aircrafts) == 0:
             if self.finish_game is not None:
+                self.off_all_sound()
                 self.finish_game(self.score)
+
+    def off_all_sound(self):
+        self.sound.stop_all()
