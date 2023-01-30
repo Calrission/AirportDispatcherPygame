@@ -1,10 +1,11 @@
 import pygame.font
 from const import screen_width, screen_height
 from Screens.Screen import Screen
+from SoundController import SoundController
 
 
 class Menu(Screen):
-    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str):
+    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str, sound_Controller: SoundController):
         super().__init__(x, y, surface)
         self.padding = padding
         self._option_surfaces = []
@@ -12,6 +13,7 @@ class Menu(Screen):
         self._current_option = 0
         self.font = pygame.font.Font('Fonts/AmaticSC-Bold.ttf', 76)
         self.background = pygame.transform.scale(pygame.image.load(background), (screen_width, screen_height))
+        self.sound_Controller = sound_Controller
 
     def append_option(self, option, callback):
         self._option_surfaces.append(self.font.render(option, True, (0, 0, 0)))
@@ -36,12 +38,16 @@ class Menu(Screen):
         if e.type == pygame.KEYDOWN:
             if e.key == pygame.K_w or e.key == pygame.K_UP:
                 self.switch(-1)
+                self.sound_Controller.play('Music/Button.wav')
             elif e.key == pygame.K_s or e.key == pygame.K_DOWN:
                 self.switch(1)
+                self.sound_Controller.play('Music/Button.wav')
             elif e.key == pygame.K_SPACE or e.key == pygame.K_RETURN:
                 self.select()
+                self.sound_Controller.play('Music/Button.wav')
             elif e.key == pygame.K_BACKSPACE:
                 self._callbacks[-1]()
+                self.sound_Controller.play('Music/Button.wav')
 
 
 

@@ -11,6 +11,7 @@ from Screens.Settings import Settings
 from Screens.Levels import Levels
 from Screens.AboutAs import AboutAs
 from Saves.ScoreSaver import ScoreSaver
+from SoundController import SoundController
 
 
 class App:
@@ -33,7 +34,9 @@ class App:
         pygame.init()
         pygame.mixer.music.load('Music/Main.mp3')
         pygame.mixer.music.play(-1)
-        self.s_button = pygame.mixer.Sound('Music/Button.wav')
+
+        self.sound_Controller = SoundController()
+        self.sound_Controller.add_sound('Music/Button.wav')
         pygame.font.init()
         pygame.display.set_caption('Диспетчер')
 
@@ -47,10 +50,10 @@ class App:
         self.scenario = Scenario()
         scores = ScoreSaver('Saves/Score.set')
 
-        self.menu = Menu(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png')
-        self.levels = Levels(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', scores)
-        self.aboutAs = AboutAs(80, screen_height // 2, 100, self.surface, 'Sprites/Menu/Level_background.png')
-        self.settings = Settings(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', 'Saves/Settings.set')
+        self.menu = Menu(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', self.sound_Controller)
+        self.levels = Levels(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', scores, self.sound_Controller)
+        self.aboutAs = AboutAs(80, screen_height // 2, 100, self.surface, 'Sprites/Menu/Level_background.png', self.sound_Controller)
+        self.settings = Settings(100, 100, 100, self.surface, 'Sprites/Menu/Level_background.png', 'Saves/Settings.set', self.sound_Controller)
 
         self.now_screen: Screen = self.menu
 
@@ -82,9 +85,6 @@ class App:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
-            elif event.type == pygame.KEYDOWN:
-                self.s_button.play()
-                self.s_button.set_volume(self.settings.soundVolume)
             self.now_screen.parse_event(event)
 
         self.clock.tick(fps)
