@@ -5,6 +5,7 @@ from Commands.CommandExecutor import CommandExecutor
 from GameClock import GameClock
 from Saves.ScoreSaver import ScoreSaver
 from Screens.Screen import Screen
+from SoundController import SoundController
 from Sprites.UIBackgroundSprite import UIBackgroundSprite
 from Sprites.UIFrameSprite import UIFrameSprite
 from SmartScreen import SmartScreen
@@ -15,11 +16,12 @@ from Scenario.Scenario import Scenario
 
 
 class Game(Screen):
-    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event, score: ScoreSaver):
+    def __init__(self, surface: pygame.Surface, scenario: Scenario, clock: Clock, finish_event, score: ScoreSaver, sound: SoundController):
         super().__init__(0, 0, surface, finish_event)
         self.scenario = scenario
         self.clock = clock
         self.score_saver = score
+        self.sound = sound
 
         self.game_clock = GameClock()
 
@@ -38,7 +40,7 @@ class Game(Screen):
         self.smart_screen.add_sprite(self.frame_sprite)
         self.smart_screen.add_sprite(self.clock_sprite)
 
-        self.terminalController = TerminalController(self.smart_screen, self.controller)
+        self.terminalController = TerminalController(self.smart_screen, self.controller, self.sound)
         self.commandExecutor = CommandExecutor(self.controller,
                                                self.terminalController.input_terminal.text_view,
                                                self.terminalController.output_terminal, finish_game=finish_event)

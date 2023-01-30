@@ -1,14 +1,12 @@
 import pygame
 
 
-class SoundController():
+class SoundController:
     def __init__(self):
         self.sounds = {}
 
     def add_sound(self, file):
         self.sounds[file] = (pygame.mixer.Sound(file))
-
-
 
     def play(self, file='None', ID=-999):
         if file == 'None' and ID != -999:

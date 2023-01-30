@@ -1,14 +1,15 @@
 from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
+from SoundController import SoundController
 from Terminals.AircraftsTerminal import AircraftsTerminal
 from Terminals.CommandInputTerminal import CommandInputTerminal
 
 
 class TerminalController:
-    def __init__(self, smart_screen: SmartScreen, aircontr):
+    def __init__(self, smart_screen: SmartScreen, aircontr, sound: SoundController):
         self.smart_screen = smart_screen
 
-        self.input_terminal = CommandInputTerminal(24, 510, 590, 190)
+        self.input_terminal = CommandInputTerminal(24, 510, 590, 190, sound)
         self.output_terminal = AircraftsTerminal(665, 510, 590, 190, aircontr)
 
     def refresh(self):
