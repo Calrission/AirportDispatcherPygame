@@ -31,3 +31,15 @@ class SoundController:
             self.sounds[file].stop()
         else:
             print('Ошибка остановки', file, ID)
+
+    def stop_all(self):
+        for i in self.sounds.values():
+            i.stop()
+
+    def stop(self, file='None', ID=-999):
+        if file == 'None' and ID != -999:
+            self.sounds.values()[ID].stop()
+        elif file != 'None' and ID == -999:
+            self.sounds[file].stop()
+        else:
+            print('Ошибка остановки', file, ID)
