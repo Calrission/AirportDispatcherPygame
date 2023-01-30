@@ -13,6 +13,7 @@ class Settings(Menu):
         self.load(self.save_file)
 
         pygame.mixer.music.set_volume(self.musicVolume)
+        self.sound_Controller.set_volume(self.soundVolume, 'Music/Button.wav')
 
         self.statMusic = self.font.render(str(int(self.musicVolume * 100)), True, (0, 0, 0))
         self.statSound = self.font.render(str(int(self.soundVolume * 100)), True, (0, 0, 0))
