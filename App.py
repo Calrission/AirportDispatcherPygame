@@ -37,6 +37,7 @@ class App:
         self.sound_Controller.add_sound('Music/land.wav')
         self.sound_Controller.add_sound('Music/TakeOff.wav')
         self.sound_Controller.add_sound('Music/Boom.wav')
+
         pygame.font.init()
         pygame.display.set_caption('Диспетчер')
 
