@@ -18,7 +18,9 @@ class Sprite:
         return Rect(self.x, self.y, self.w, self.h)
 
     def check_collision(self, rect: Rect) -> bool:
-        return self.get_rect().colliderect(rect)
+        if self.y < 470:
+            return self.get_rect().colliderect(rect)
+        return False
 
     def draw(self, screen: Surface):
         pass
