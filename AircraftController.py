@@ -97,12 +97,13 @@ class AircraftController:
         self.score += self.fail_take_off_price
 
     def boom(self, first: FlyTransport, second: FlyTransport):
-        self._is_boom = True
+        if not self._is_boom:
+            self.off_all_sound()
+            self.sound.play("Music/Boom.wav")
+            self._is_boom = True
         first.animation.is_play = False
         second.animation.is_play = False
         self.score += self.crush_price
-        self.off_all_sound()
-        self.sound.play("Music/Boom.wav")
 
     def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
         plane = Plane.get_instance(0, 0, Plane_ID, status)
