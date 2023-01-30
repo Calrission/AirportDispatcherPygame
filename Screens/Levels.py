@@ -7,8 +7,12 @@ class Levels(Menu):
     def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str, scores: ScoreSaver):
         super().__init__(x, y, padding, surface, background)
         self.scores = []
+        self.raw_scores = scores
+        self.reload()
 
-        for i in scores.data.values():
+    def reload(self):
+        self.scores = []
+        for i in self.raw_scores.data.values():
             self.scores.append(self.font.render(str(i), True, (0, 0, 0)))
 
     def draw(self):

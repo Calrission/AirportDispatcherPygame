@@ -95,6 +95,8 @@ class App:
 
     def change_screen(self, screen: Screen):
         self.now_screen = screen
+        if isinstance(screen, Levels):
+            screen.reload()
 
     def load_level(self, file: str):
         self.scenario.load(file)
