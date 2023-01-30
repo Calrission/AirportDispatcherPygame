@@ -119,7 +119,7 @@ class AircraftController:
 
     def tick_check_collision(self):
         for i in self.aircrafts:
-            if i.animation is not None and i.animation.is_finish:
+            if i.is_finish:
                 self.remove_aircraft(i)
         for first, second in self.check_collision:
             if first.check_collision(second.rect):
