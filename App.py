@@ -52,8 +52,6 @@ class App:
         self.now_screen: Screen = self.menu
 
         self.menu.append_option("Старт", lambda: self.change_screen(
-            Game(self.surface, self.load_level("Scenario/debagScenario.scen"), self.clock, self.finish_game, scores)))
-        self.menu.append_option("Продолжить", lambda: self.change_screen(
             Game(self.surface, self.load_level(self.lastLevel), self.clock, self.finish_game, scores)))
         self.menu.append_option('Уровни', lambda: self.change_screen(self.levels))
         self.menu.append_option('Настройки', lambda: self.change_screen(self.settings))
