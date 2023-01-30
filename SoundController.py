@@ -23,3 +23,11 @@ class SoundController:
             self.sounds[file].set_volume(volume)
         else:
             print('Ошибка установки звука', file, ID, volume)
+
+    def stop(self, file='None', ID=-999):
+        if file == 'None' and ID != -999:
+            self.sounds.values()[ID].stop()
+        elif file != 'None' and ID == -999:
+            self.sounds[file].stop()
+        else:
+            print('Ошибка остановки', file, ID)
