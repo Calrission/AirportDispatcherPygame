@@ -79,10 +79,8 @@ class AircraftController:
         self.score += self.fall_price
 
     def fail_take_off(self, aircraft: FlyTransport):
-        aircraft.show = True
         if aircraft not in self.aircrafts:
             raise ValueError("aircraft not exist in controller")
-        aircraft.show = False
         aircraft.animation = FailTakeOffAnimation(aircraft)
         aircraft.fail_take_off()
 
@@ -112,12 +110,12 @@ class AircraftController:
     def refresh_way_a(self):
         if self.way_A is not None:
             if isinstance(self.way_A, Plane):
-                self.way_A = None if self.way_A.is_finish and self.way_A.animation is None else self.way_A
+                self.way_A = None if self.way_A.is_finish else self.way_A
 
     def refresh_way_b(self):
         if self.way_B is not None:
             if isinstance(self.way_B, Plane):
-                self.way_B = None if self.way_B.is_finish and self.way_B.animation is None else self.way_B
+                self.way_B = None if self.way_B.is_finish else self.way_B
 
     def tick_check_collision(self):
         for i in self.aircrafts:
