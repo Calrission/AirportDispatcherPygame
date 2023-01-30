@@ -76,7 +76,7 @@ class AircraftController:
                 self.check_collision.append((self.way_B, aircraft))
 
         aircraft.takeOff()
-        self.sound.play('Music/land.wav')
+        self.sound.play('Music/TakeOff.wav')
         self.score += self.take_off_price
 
     def fall(self, aircraft: FlyTransport):
@@ -101,6 +101,8 @@ class AircraftController:
         first.animation.is_play = False
         second.animation.is_play = False
         self.score += self.crush_price
+        self.off_all_sound()
+        self.sound.play("Music/Boom.wav")
 
     def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
         plane = Plane.get_instance(0, 0, Plane_ID, status)
