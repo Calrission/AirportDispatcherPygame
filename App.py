@@ -28,9 +28,6 @@ class App:
         except Exception as ex:
             print('Ошибка загрузки последнего уровня\n', ex)
 
-
-
-
         pygame.init()
         pygame.mixer.music.load('Music/Main.mp3')
         pygame.mixer.music.play(-1)

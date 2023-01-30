@@ -20,10 +20,10 @@ class MultiSprite(Sprite):
 
         super().__init__(x, y, *self.size)
 
-    def changeSprite(self, img: str):
-        self.sprite.current_img = self.sprites[self.sprites.index(img)]
-        self.size = self.current_img.get_size()
-        self.rect = pygame.Rect(self.x, self.y, *self.size)
-
     def draw(self, screen: Surface):
         screen.blit(self.current_img, (self.x, self.y))
+
+    def get_rect(self):
+        return pygame.Rect(self.x, self.y, *self.current_img.get_size())
+
+
