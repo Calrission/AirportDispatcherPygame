@@ -138,7 +138,13 @@ class AircraftController:
         if self._is_boom:
             self._time += 1
         if self._time >= self._time_after_booom:
+            self.off_all_sound()
             self.finish_game(self.score)
         if len(self.aircrafts) == 0:
             if self.finish_game is not None:
+                self.off_all_sound()
                 self.finish_game(self.score)
+
+    def off_all_sound(self):
+        for i in self.sound.sounds:
+            self.sound.stop(i)
