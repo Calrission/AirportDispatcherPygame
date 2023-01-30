@@ -1,11 +1,12 @@
 import pygame
 from Screens.Menu import Menu
 from Saves.ScoreSaver import ScoreSaver
+from SoundController import SoundController
 
 
 class Levels(Menu):
-    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str, scores: ScoreSaver):
-        super().__init__(x, y, padding, surface, background)
+    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str, scores: ScoreSaver, sound_Controller: SoundController):
+        super().__init__(x, y, padding, surface, background, sound_Controller)
         self.scores = []
         self.raw_scores = scores
         self.reload()

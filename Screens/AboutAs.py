@@ -1,11 +1,12 @@
 from Screens.Menu import Menu
 import pygame
 from const import screen_width, screen_height
+from SoundController import SoundController
 
 
 class AboutAs(Menu):
-    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str):
-        super().__init__(x, y, padding, surface, background)
+    def __init__(self, x: int, y: int, padding: int, surface: pygame.Surface, background: str, sound_Controller: SoundController):
+        super().__init__(x, y, padding, surface, background, sound_Controller)
         texts = {
             'text_school': 'Проект "Диспетчер аэропорта" создан для Академии Яндекса',
             'text_autor': 'Авторы: Артемий Струков, Золотарёв Данил',
