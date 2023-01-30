@@ -8,6 +8,7 @@ from Scenario.Scenario import Scenario
 from SmartScreen import SmartScreen
 from Sprites.FlyTransport import *
 from Sprites.Plane import Plane
+from const import fps
 
 
 class AircraftController:
@@ -25,6 +26,9 @@ class AircraftController:
         self.finish_game = None
 
         self.check_collision: list[tuple[FlyTransport, FlyTransport]] = []
+        self._is_boom = False
+        self._time_after_booom = fps * 3
+        self._time = 0
 
     def add_aircraft(self, aircraft: FlyTransport):
         self.aircrafts.append(aircraft)
@@ -87,7 +91,9 @@ class AircraftController:
         self.score += self.fail_take_off_price
 
     def boom(self, first: FlyTransport, second: FlyTransport):
-        print("BOOOOOOOOM !")
+        self._is_boom = True
+        first.animation.is_play = False
+        second.animation.is_play = False
 
     def add_new_plane(self, smart_screen: SmartScreen, Plane_ID: str, status: StatusFlyTransport) -> Plane:
         plane = Plane.get_instance(0, 0, Plane_ID, status)
@@ -122,8 +128,12 @@ class AircraftController:
             if i.is_finish:
                 self.remove_aircraft(i)
         for first, second in self.check_collision:
-            if first.check_collision(second.rect):
+            if first.check_collision(second.get_rect()):
                 self.boom(first, second)
+        if self._is_boom:
+            self._time += 1
+        if self._time >= self._time_after_booom:
+            self.finish_game(self.score)
         if len(self.aircrafts) == 0:
             if self.finish_game is not None:
                 self.finish_game(self.score)

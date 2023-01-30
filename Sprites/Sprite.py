@@ -7,7 +7,6 @@ class Sprite:
         self.y = y
         self.w = w
         self.h = h
-        self.rect = Rect(x, y, w, h)
         self.coord = (x, y)
         self.show = True
 
@@ -15,8 +14,11 @@ class Sprite:
         self.x, self.y = x, y
         self.coord = (x, y)
 
+    def get_rect(self):
+        return Rect(self.x, self.y, self.w, self.h)
+
     def check_collision(self, rect: Rect) -> bool:
-        return self.rect.colliderect(rect)
+        return self.get_rect().colliderect(rect)
 
     def draw(self, screen: Surface):
         pass
